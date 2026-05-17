@@ -1,0 +1,379 @@
+.chamberMain {
+    min-height: 100vh;
+    background-color: #0b1118;
+    /* Deep luxury navy/black */
+    color: #dbdbdb;
+    font-family: var(--font-cinzel), serif;
+    /* High-end serif fashion font */
+    position: relative;
+    overflow-x: hidden;
+    padding: 2rem;
+}
+
+/* ------------------------------------- */
+/* LUXURY BACKGROUND & GEOMETRY          */
+/* ------------------------------------- */
+.luxuryBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at 70% 30%, rgba(238, 186, 77, 0.05), transparent 60%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.geometricLines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image:
+        linear-gradient(rgba(238, 186, 77, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(238, 186, 77, 0.05) 1px, transparent 1px);
+    background-size: 150px 150px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.geometricLines::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 150px;
+    width: 1px;
+    height: 100%;
+    background: rgba(238, 186, 77, 0.2);
+}
+
+/* ------------------------------------- */
+/* CONTENT LAYOUT                        */
+/* ------------------------------------- */
+.content {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.headerRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(238, 186, 77, 0.3);
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+
+.backLink {
+    color: #eeba4d;
+    text-decoration: none;
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+.backLink:hover {
+    letter-spacing: 8px;
+    text-shadow: 0 0 10px rgba(238, 186, 77, 0.5);
+}
+
+/* ------------------------------------- */
+/* LUXURY GRID (BULLETPROOF MATRIX)      */
+/* ------------------------------------- */
+.luxuryGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-bottom: 5rem;
+}
+
+@media (min-width: 1024px) {
+    .luxuryGrid {
+        grid-template-columns: 450px 1fr;
+        align-items: start;
+    }
+}
+
+.luxuryColLeft {
+    width: 100%;
+}
+
+.portraitBox {
+    width: 100%;
+    height: 600px;
+    /* Rigid anchor */
+    background: linear-gradient(135deg, #0b1118 0%, #17202b 100%);
+    border: 1px solid rgba(238, 186, 77, 0.5);
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.8), 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.diamondDecalTL,
+.diamondDecalBR {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #eeba4d;
+    transform: rotate(45deg);
+    z-index: 20;
+}
+
+.diamondDecalTL {
+    top: 15px;
+    left: 15px;
+}
+
+.diamondDecalBR {
+    bottom: 15px;
+    right: 15px;
+}
+
+.portraitImg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Absolutely flawless non-breaking scale */
+    z-index: 10;
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(238, 186, 77, 0.2));
+    transition: transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.portraitBox:hover .portraitImg {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 30px rgba(238, 186, 77, 0.5));
+}
+
+/* ------------------------------------- */
+/* ELEGANT DOSSIER BLOCK                 */
+/* ------------------------------------- */
+.luxuryColRight {
+    display: flex;
+    flex-direction: column;
+}
+
+.dossierLuxury {
+    flex: 1;
+    padding: 3rem;
+    background: transparent;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.brandName {
+    font-size: clamp(4rem, 8vw, 7rem);
+    color: #eeba4d;
+    margin: 0;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+    letter-spacing: 10px;
+    font-weight: 200;
+}
+
+.subBrand {
+    font-size: 1.2rem;
+    color: #88929b;
+    margin-top: -10px;
+    margin-bottom: 3rem;
+    letter-spacing: 8px;
+    font-family: var(--font-tech), monospace;
+}
+
+.elegantText {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #c9d1d9;
+    font-family: var(--font-body), sans-serif;
+    margin-bottom: 2.5rem;
+    max-width: 800px;
+}
+
+.classPill {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: transparent;
+    color: #eeba4d;
+    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    align-self: flex-start;
+    margin-bottom: 2rem;
+    border: 1px solid #eeba4d;
+    border-radius: 50px;
+    /* High fashion pill box */
+}
+
+.roleIconGold {
+    width: 25px;
+    height: 25px;
+}
+
+/* Gold coloring is natural or CSS filtered depending on image, but we leave it clean */
+
+.audioWrapper button {
+    font-family: var(--font-cinzel) !important;
+    background: transparent !important;
+    color: #eeba4d !important;
+    border: 1px solid #eeba4d !important;
+    border-radius: 0 !important;
+}
+
+.audioWrapper button:hover {
+    background: rgba(238, 186, 77, 0.1) !important;
+}
+
+/* ------------------------------------- */
+/* LUXURY CARD ABILITIES GRID            */
+/* ------------------------------------- */
+.arsenalHeaderBlock {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.arsenalTitle {
+    font-size: 2rem;
+    color: #eeba4d;
+    margin: 0;
+    letter-spacing: 5px;
+    font-weight: 300;
+}
+
+.goldLine {
+    flex: 1;
+    height: 1px;
+    background: #eeba4d;
+    opacity: 0.3;
+}
+
+.luxuryCardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.luxuryCard {
+    background: rgba(11, 17, 24, 0.8);
+    border: 1px solid rgba(238, 186, 77, 0.2);
+    padding: 3rem 2rem;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    overflow: hidden;
+    text-align: center;
+}
+
+.cardInternalBorder {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid rgba(238, 186, 77, 0.1);
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.goldDiamondCenter {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: #eeba4d;
+    transform: translateX(-50%) rotate(45deg);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.luxuryCard:hover {
+    border-color: #eeba4d;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform: translateY(-5px);
+}
+
+.luxuryCard:hover .cardInternalBorder {
+    border-color: rgba(238, 186, 77, 0.5);
+}
+
+.luxuryCard:hover .goldDiamondCenter {
+    opacity: 1;
+    top: 15px;
+}
+
+.cardIconBox {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 2rem auto;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardIconBox::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #eeba4d;
+    transform: rotate(45deg);
+    transition: transform 0.5s ease;
+}
+
+.luxuryCard:hover .cardIconBox::after {
+    transform: rotate(135deg);
+    background: rgba(238, 186, 77, 0.1);
+}
+
+.cardIcon {
+    width: 45px;
+    height: 45px;
+    z-index: 10;
+    /* Filter hack to make icon gold! invert(1) makes white black, then sepia/hue shifts */
+    filter: invert(79%) sepia(45%) saturate(740%) hue-rotate(344deg) brightness(98%) contrast(93%);
+}
+
+.luxuryAbilityName {
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    position: relative;
+    z-index: 2;
+    letter-spacing: 2px;
+    font-weight: 300;
+}
+
+.goldSlot {
+    display: block;
+    color: #eeba4d;
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 4px;
+    font-family: var(--font-tech), monospace;
+}
+
+.cardData p {
+    color: #a0a8b1;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    font-family: var(--font-body), sans-serif;
+    position: relative;
+    z-index: 2;
+}

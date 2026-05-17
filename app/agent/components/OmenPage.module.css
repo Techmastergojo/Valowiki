@@ -1,0 +1,400 @@
+.omenMain {
+    min-height: 100vh;
+    background-color: #030406;
+    /* Pitch black / true void limit */
+    color: #fff;
+    font-family: inherit;
+    position: relative;
+    overflow-x: hidden;
+    padding: 2rem;
+    letter-spacing: 1px;
+}
+
+/* ------------------------------------- */
+/* ABYSSAL VOID ANIMATION BACKGROUND     */
+/* ------------------------------------- */
+.voidBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at 50% 50%, #030406 0%, #010102 100%);
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(150px);
+    opacity: 0.5;
+    animation: shadowDrift 20s infinite alternate ease-in-out;
+}
+
+.orb1 {
+    width: 600px;
+    height: 600px;
+    background: #2b1257;
+    /* Deep violet essence */
+    top: -10%;
+    left: -10%;
+    animation-delay: 0s;
+}
+
+.orb2 {
+    width: 800px;
+    height: 800px;
+    background: #11363e;
+    /* Ghost Cyan core */
+    bottom: -20%;
+    right: -20%;
+    animation-delay: -5s;
+    animation-duration: 25s;
+}
+
+.orb3 {
+    width: 700px;
+    height: 700px;
+    background: #390d40;
+    top: 40%;
+    left: 30%;
+    animation-delay: -10s;
+    animation-duration: 30s;
+}
+
+@keyframes shadowDrift {
+    0% {
+        transform: translate(0, 0) scale(0.9);
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: translate(50px, -50px) scale(1.1);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translate(-30px, 30px) scale(1);
+        opacity: 0.4;
+    }
+}
+
+.voidMistOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent, rgba(3, 4, 6, 0.95) 90%);
+    z-index: 1;
+}
+
+/* ------------------------------------- */
+/* CONTENT LAYOUT                        */
+/* ------------------------------------- */
+.content {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.voidHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(83, 33, 150, 0.3);
+    /* Subtle ghost whisper line */
+    align-items: center;
+}
+
+.voyagerLink {
+    color: #48929c;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 4px;
+    transition: all 0.5s ease;
+    opacity: 0.7;
+}
+
+.voyagerLink:hover {
+    text-shadow: 0 0 15px rgba(72, 146, 156, 1);
+    color: #fff;
+    letter-spacing: 8px;
+    /* Pulled apart reality */
+    opacity: 1;
+}
+
+/* ------------------------------------- */
+/* PHANTOM GRID                          */
+/* ------------------------------------- */
+.phantomGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    margin-bottom: 6rem;
+}
+
+@media (min-width: 1024px) {
+    .phantomGrid {
+        grid-template-columns: 500px 1fr;
+        align-items: center;
+    }
+}
+
+.manifestBox {
+    width: 100%;
+    height: 700px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.omenPortrait {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 110%;
+    object-fit: contain;
+    object-position: bottom center;
+    z-index: 10;
+    filter: drop-shadow(0px -10px 40px rgba(83, 33, 150, 0.6));
+    transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.manifestBox:hover .omenPortrait {
+    filter: drop-shadow(0px 0px 50px rgba(72, 146, 156, 0.8)) blur(1px);
+    /* Dissolving portrait! */
+    opacity: 0.8;
+    transform: scale(0.98);
+}
+
+/* ------------------------------------- */
+/* WHISPER LORE PANEL                    */
+/* ------------------------------------- */
+.whisperPanel {
+    flex: 1;
+    padding: 4rem;
+    background: rgba(8, 10, 15, 0.6);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(83, 33, 150, 0.2);
+    border-radius: 5px;
+    position: relative;
+    box-shadow: inset 0 0 50px rgba(3, 4, 6, 0.8);
+    /* Interior shadow void */
+}
+
+.omenName {
+    font-size: clamp(3rem, 6vw, 6rem);
+    color: #fff;
+    margin: 0;
+    font-weight: 200;
+    /* Thin, ethereal text */
+    letter-spacing: 15px;
+    /* Extremely wide tracking for haunting vibe */
+    text-shadow: 0 0 20px rgba(83, 33, 150, 0.8);
+}
+
+.abyssSubtitle {
+    font-size: 1.2rem;
+    color: #532196;
+    margin-top: 10px;
+    margin-bottom: 3rem;
+    letter-spacing: 8px;
+    opacity: 0.6;
+}
+
+.omenLore {
+    font-size: 1.2rem;
+    line-height: 2.2;
+    /* Spacious readability */
+    color: #aeb5be;
+    margin-bottom: 3rem;
+    position: relative;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.roleBox {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: transparent;
+    color: #48929c;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 300;
+    border: 1px dashed rgba(72, 146, 156, 0.5);
+    letter-spacing: 4px;
+    margin-bottom: 2rem;
+    opacity: 0.7;
+}
+
+.roleIconPurple {
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(0 0 5px #48929c);
+}
+
+.voidPlayer button {
+    background: transparent !important;
+    color: #532196 !important;
+    border: 1px solid #532196 !important;
+    font-weight: 300 !important;
+    letter-spacing: 4px !important;
+    border-radius: 0 !important;
+    transition: all 0.5s ease !important;
+}
+
+.voidPlayer button:hover {
+    background: rgba(83, 33, 150, 0.2) !important;
+    color: #fff !important;
+    box-shadow: 0 0 30px rgba(83, 33, 150, 0.6) !important;
+    letter-spacing: 6px !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+/* ------------------------------------- */
+/* PARANOID ABILITIES GRID               */
+/* ------------------------------------- */
+.shadowHeader {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.shadowTitle {
+    font-size: 2rem;
+    color: #fff;
+    margin: 0;
+    font-weight: 200;
+    letter-spacing: 8px;
+    opacity: 0.8;
+}
+
+.violetLine {
+    flex: 1;
+    height: 1px;
+    background: #532196;
+}
+
+.phantomAbilitiesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+    margin-bottom: 5rem;
+}
+
+/* ------------------------------------- */
+/* DISSOLVE EFFECT MECHANICS             */
+/* ------------------------------------- */
+.dissolveModule {
+    background: rgba(8, 10, 15, 0.8);
+    border: 1px solid rgba(83, 33, 150, 0.3);
+    padding: 3rem;
+    position: relative;
+    transition: all 0.6s ease;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.shadowBleed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(72, 146, 156, 0.1) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: 1;
+}
+
+/* ETHEREAL HOVER DISSOLVE */
+.dissolveModule:hover {
+    border-color: rgba(72, 146, 156, 0.2);
+    transform: scale(0.98);
+    /* Module shrinks away from user */
+    filter: blur(1px);
+    /* Text becomes slightly distorted and haunting */
+    background: rgba(8, 10, 15, 0.4);
+    /* Body dissolves further */
+    box-shadow: inset 0 0 40px rgba(83, 33, 150, 0.4);
+}
+
+.dissolveModule:hover .shadowBleed {
+    opacity: 1;
+}
+
+.voidIconBox {
+    width: 60px;
+    height: 60px;
+    background: transparent;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.voidIcon {
+    width: 45px;
+    height: 45px;
+    opacity: 0.8;
+    transition: all 0.4s ease;
+}
+
+.dissolveModule:hover .voidIcon {
+    filter: blur(1px);
+    transform: scale(0.9) translateX(-5px);
+    /* Ghosting backwards */
+    opacity: 0.4;
+}
+
+.voidData {
+    position: relative;
+    z-index: 2;
+    transition: all 0.4s ease;
+}
+
+.dissolveModule:hover .voidData {
+    opacity: 0.7;
+}
+
+.dissolveAbilityName {
+    font-size: 1.8rem;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    font-weight: 300;
+    letter-spacing: 4px;
+}
+
+.dissolveModule:hover .dissolveAbilityName {
+    color: #48929c;
+    letter-spacing: 6px;
+    text-shadow: 0 0 10px rgba(72, 146, 156, 0.8);
+}
+
+.dissolveType {
+    display: inline-block;
+    color: #532196;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.dissolveText {
+    color: #aeb5be;
+    line-height: 1.8;
+    font-size: 1rem;
+    font-weight: 300;
+}

@@ -1,0 +1,395 @@
+.sageMain {
+    position: relative;
+    min-height: 100vh;
+    background: #060d0b;
+    color: #fff;
+    overflow: hidden;
+    font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+/* === JADE HEALING BACKGROUND === */
+.jadeBackground {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Floating diamond-shaped jade crystals */
+.crystal {
+    position: absolute;
+    background: rgba(31, 81, 72, 0.5);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    animation: jadeDrift 10s ease-in-out infinite;
+}
+
+@keyframes jadeDrift {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: translateY(-40px) rotate(45deg);
+        opacity: 0.6;
+    }
+}
+
+/* SIGNATURE: Healing circles — concentric rings radiating from bottom center */
+.healCircle {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    border: 1px solid rgba(78, 205, 196, 0.3);
+    border-radius: 50%;
+    animation: healRadiate 5s ease-out infinite;
+}
+
+@keyframes healRadiate {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.7;
+        margin-left: 0;
+        margin-bottom: 0;
+    }
+
+    100% {
+        width: 800px;
+        height: 800px;
+        opacity: 0;
+        margin-left: -400px;
+        margin-bottom: -400px;
+    }
+}
+
+/* SIGNATURE: Resurrection glow — warm light column rising from bottom */
+.resGlow {
+    position: absolute;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(0deg, rgba(78, 205, 196, 0.6), rgba(31, 81, 72, 0.3), transparent);
+    animation: resurrectionRise 7s ease-in-out infinite;
+}
+
+@keyframes resurrectionRise {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+
+    30% {
+        height: 60vh;
+        opacity: 0.5;
+    }
+
+    60% {
+        opacity: 0.3;
+    }
+
+    100% {
+        height: 100vh;
+        opacity: 0;
+    }
+}
+
+/* SIGNATURE: Barrier wall forming — horizontal jade wall lines */
+.barrierLine {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 5%, rgba(78, 205, 196, 0.15) 30%, rgba(78, 205, 196, 0.15) 70%, transparent 95%);
+    animation: barrierForm 8s ease-in-out infinite;
+}
+
+@keyframes barrierForm {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    30% {
+        opacity: 0.6;
+        transform: scaleX(1);
+    }
+
+    70% {
+        opacity: 0.4;
+        transform: scaleX(1);
+    }
+}
+
+.healOverlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(31, 81, 72, 0.1), transparent 50%);
+    z-index: 1;
+}
+
+/* === CONTENT === */
+.content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+}
+
+.zenHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(31, 81, 72, 0.4);
+}
+
+.zenLink {
+    color: #1f5148;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.zenLink:hover {
+    color: #4ecdc4;
+    text-shadow: 0 0 20px rgba(31, 81, 72, 0.5);
+}
+
+/* === GRID === */
+.healGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 4rem;
+}
+
+.imageCol {
+    display: flex;
+    justify-content: center;
+}
+
+.orbBox {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 3/4;
+    background: linear-gradient(180deg, #0a1a16, #0d2820);
+    border: 2px solid rgba(31, 81, 72, 0.4);
+    border-radius: 8px;
+    overflow: hidden;
+    animation: healPulse 5s ease-in-out infinite;
+}
+
+@keyframes healPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(31, 81, 72, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 50px rgba(31, 81, 72, 0.4), 0 0 80px rgba(78, 205, 196, 0.1);
+    }
+}
+
+.sagePortrait {
+    width: 110%;
+    height: 110%;
+    object-fit: cover;
+    object-position: center top;
+    margin-left: -5%;
+    margin-top: -3%;
+    filter: contrast(1.05) saturate(1.1);
+    transition: transform 0.6s ease;
+}
+
+.orbBox:hover .sagePortrait {
+    transform: scale(1.05);
+}
+
+/* === LORE === */
+.loreCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.zenPanel {
+    padding: 2rem;
+    background: rgba(31, 81, 72, 0.04);
+    border-left: 3px solid #1f5148;
+    border-radius: 0 8px 8px 0;
+}
+
+.sageName {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300;
+    color: #4ecdc4;
+    letter-spacing: 12px;
+    line-height: 0.9;
+    margin: 0 0 0.5rem 0;
+    font-family: var(--font-heading, 'Outfit', sans-serif);
+}
+
+.healSubtitle {
+    font-size: 0.9rem;
+    color: #1f5148;
+    letter-spacing: 6px;
+    margin: 0 0 1.5rem 0;
+    font-weight: 600;
+}
+
+.sageLore {
+    font-size: 0.95rem;
+    line-height: 2;
+    color: #8faba5;
+    margin-bottom: 1.5rem;
+}
+
+.roleBox {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.2rem;
+    background: rgba(31, 81, 72, 0.08);
+    border: 1px solid rgba(31, 81, 72, 0.3);
+    border-radius: 6px;
+    width: fit-content;
+    margin-bottom: 1.5rem;
+}
+
+.roleIconJade {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(0.5) sepia(1) hue-rotate(120deg) saturate(2);
+}
+
+.roleBox span {
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    color: #4ecdc4;
+    font-weight: 600;
+}
+
+.healPlayer {
+    margin-top: 1rem;
+}
+
+/* === ABILITIES === */
+.resHeader {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.resTitle {
+    font-size: 1.6rem;
+    color: #4ecdc4;
+    letter-spacing: 10px;
+    margin: 0 0 0.5rem 0;
+    font-weight: 300;
+    font-family: var(--font-heading, 'Outfit', sans-serif);
+}
+
+.jadeLine {
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #1f5148, transparent);
+    margin: 0 auto;
+}
+
+.resGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.orbModule {
+    position: relative;
+    padding: 1.5rem;
+    background: rgba(31, 81, 72, 0.04);
+    border: 1px solid rgba(31, 81, 72, 0.15);
+    border-radius: 8px;
+    transition: all 0.4s ease;
+}
+
+.orbModule:hover {
+    border-color: rgba(78, 205, 196, 0.4);
+    background: rgba(31, 81, 72, 0.08);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(31, 81, 72, 0.15);
+}
+
+.orbIconBox {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    background: rgba(31, 81, 72, 0.1);
+    border: 1px solid rgba(31, 81, 72, 0.3);
+    border-radius: 50%;
+}
+
+.orbIcon {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1);
+}
+
+.orbData {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.orbAbilityName {
+    font-size: 0.95rem;
+    color: #4ecdc4;
+    letter-spacing: 3px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.orbType {
+    font-size: 0.7rem;
+    color: #1f5148;
+    letter-spacing: 3px;
+    font-weight: 600;
+}
+
+.orbText {
+    font-size: 0.82rem;
+    line-height: 1.8;
+    color: #778;
+    margin: 0;
+}
+
+.sereneBorder {
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(78, 205, 196, 0.3), transparent);
+}
+
+@media (max-width: 768px) {
+    .healGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .content {
+        padding: 1rem 1.5rem;
+    }
+}

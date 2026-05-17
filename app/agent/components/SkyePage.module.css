@@ -1,0 +1,398 @@
+.skyeMain {
+    position: relative;
+    min-height: 100vh;
+    background: #080e0a;
+    color: #fff;
+    overflow: hidden;
+    font-family: var(--font-outfit, 'Outfit', sans-serif);
+}
+
+.leafBackground {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.leaf {
+    position: absolute;
+    background: rgba(67, 106, 81, 0.5);
+    border-radius: 0 50% 50% 50%;
+    animation: leafFall 9s ease-in-out infinite;
+}
+
+@keyframes leafFall {
+    0% {
+        transform: translateY(-20vh) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.5;
+    }
+
+    90% {
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.natureOverlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 70%, rgba(67, 106, 81, 0.08), transparent 50%);
+    z-index: 1;
+}
+
+/* SIGNATURE: Hawk swooping arc trails across screen */
+.hawkTrail {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(127, 201, 138, 0.5), rgba(67, 106, 81, 0.3), transparent);
+    border-radius: 50%;
+    animation: hawkSwoop 5s ease-in-out infinite;
+    transform-origin: left center;
+}
+
+@keyframes hawkSwoop {
+    0% {
+        transform: scaleX(0) translateY(0);
+        opacity: 0;
+    }
+
+    20% {
+        transform: scaleX(0.5) translateY(-30px);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scaleX(1) translateY(-60px);
+        opacity: 0.5;
+    }
+
+    80% {
+        transform: scaleX(0.5) translateY(-20px);
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: scaleX(0) translateY(0);
+        opacity: 0;
+    }
+}
+
+/* SIGNATURE: Vine tendrils growing upward from bottom */
+.vine {
+    position: absolute;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(0deg, rgba(67, 106, 81, 0.6), rgba(127, 201, 138, 0.3), transparent);
+    border-radius: 2px;
+    animation: vineGrow 8s ease-in-out infinite;
+}
+
+@keyframes vineGrow {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+
+    40% {
+        height: 40vh;
+        opacity: 0.5;
+    }
+
+    70% {
+        opacity: 0.3;
+    }
+
+    100% {
+        height: 70vh;
+        opacity: 0;
+    }
+}
+
+/* SIGNATURE: Nature breath pulse — green glow expanding from center */
+.breathPulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid rgba(127, 201, 138, 0.2);
+    border-radius: 50%;
+    animation: natureBreathe 6s ease-out infinite;
+}
+
+@keyframes natureBreathe {
+    0% {
+        width: 0;
+        height: 0;
+        margin-left: 0;
+        margin-top: 0;
+        opacity: 0.5;
+    }
+
+    100% {
+        width: 500px;
+        height: 500px;
+        margin-left: -250px;
+        margin-top: -250px;
+        opacity: 0;
+    }
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+}
+
+.wildHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(67, 106, 81, 0.4);
+}
+
+.wildLink {
+    color: #436a51;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.wildLink:hover {
+    color: #7fc98a;
+    text-shadow: 0 0 20px rgba(67, 106, 81, 0.5);
+}
+
+.trailGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 4rem;
+}
+
+.imageCol {
+    display: flex;
+    justify-content: center;
+}
+
+.hawkBox {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, #0a1a0f, #1a2f1a);
+    border: 2px solid rgba(67, 106, 81, 0.4);
+    border-radius: 4px;
+    overflow: hidden;
+    animation: naturePulse 5s ease-in-out infinite;
+}
+
+@keyframes naturePulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(67, 106, 81, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 50px rgba(67, 106, 81, 0.4);
+    }
+}
+
+.skyePortrait {
+    width: 110%;
+    height: 110%;
+    object-fit: cover;
+    object-position: center top;
+    margin-left: -5%;
+    margin-top: -3%;
+    filter: contrast(1.1) saturate(1.2);
+    transition: transform 0.5s ease;
+}
+
+.hawkBox:hover .skyePortrait {
+    transform: scale(1.06);
+}
+
+.loreCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wildPanel {
+    padding: 2rem;
+    background: rgba(67, 106, 81, 0.04);
+    border-left: 3px solid #436a51;
+}
+
+.skyeName {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 800;
+    color: #7fc98a;
+    letter-spacing: 6px;
+    line-height: 0.9;
+    margin: 0 0 0.5rem 0;
+}
+
+.trailSubtitle {
+    font-size: 0.9rem;
+    color: #4f1413;
+    letter-spacing: 6px;
+    margin: 0 0 1.5rem 0;
+    font-weight: 700;
+}
+
+.skyeLore {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #8faa8f;
+    margin-bottom: 1.5rem;
+}
+
+.roleBox {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.2rem;
+    background: rgba(67, 106, 81, 0.08);
+    border: 1px solid rgba(67, 106, 81, 0.3);
+    width: fit-content;
+    margin-bottom: 1.5rem;
+}
+
+.roleIconGreen {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(0.5) sepia(1) hue-rotate(80deg) saturate(2);
+}
+
+.roleBox span {
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    color: #7fc98a;
+    font-weight: 700;
+}
+
+.wildPlayer {
+    margin-top: 1rem;
+}
+
+.seekHeader {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.seekTitle {
+    font-size: 1.6rem;
+    color: #7fc98a;
+    letter-spacing: 8px;
+    margin: 0 0 0.5rem 0;
+}
+
+.greenLine {
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, #436a51, #4f1413);
+    margin: 0 auto;
+}
+
+.seekGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.faunaModule {
+    position: relative;
+    padding: 1.5rem;
+    background: rgba(67, 106, 81, 0.04);
+    border: 1px solid rgba(67, 106, 81, 0.15);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.faunaModule:hover {
+    border-color: #436a51;
+    background: rgba(67, 106, 81, 0.08);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(67, 106, 81, 0.15);
+}
+
+.faunaIconBox {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    background: rgba(67, 106, 81, 0.1);
+    border: 2px solid rgba(67, 106, 81, 0.3);
+    border-radius: 4px;
+}
+
+.faunaIcon {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) invert(1);
+}
+
+.faunaData {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.faunaAbilityName {
+    font-size: 0.95rem;
+    color: #7fc98a;
+    letter-spacing: 3px;
+    margin: 0;
+}
+
+.faunaType {
+    font-size: 0.7rem;
+    color: #4f1413;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.faunaText {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: #888;
+    margin: 0;
+}
+
+.trailBorder {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #436a51, transparent);
+}
+
+@media (max-width: 768px) {
+    .trailGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .content {
+        padding: 1rem 1.5rem;
+    }
+}

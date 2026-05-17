@@ -1,0 +1,345 @@
+.harborMain {
+  min-height: 100vh;
+  background-color: #0c1619; /* Deep Ocean Trench */
+  color: #fff;
+  font-family: var(--font-heading), sans-serif;
+  position: relative;
+  overflow-x: hidden;
+  padding: 2rem;
+}
+
+/* ------------------------------------- */
+/* OCEANIC BACKGROUND ANIMATIONS         */
+/* ------------------------------------- */
+.oceanicBackgroundContainer {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.deepWaterLayer {
+  position: absolute;
+  top: -10vh; left: -10vw; right: -10vw; bottom: -10vh;
+  background: linear-gradient(135deg, #0e3b43 0%, #061113 50%, #0c1619 100%);
+  z-index: 1;
+}
+
+.ringContainer {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1500px; height: 1500px;
+  z-index: 2;
+  opacity: 0.15;
+}
+
+.бронзRings {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 10px solid #b48e4b;
+  border-radius: 50%;
+  animation: spinBronze 40s infinite linear;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+.бронзRingsInner {
+  position: absolute;
+  top: 10%; left: 10%; right: 10%; bottom: 10%;
+  border: 4px solid #b48e4b;
+  border-radius: 50%;
+  animation: spinBronzeReverse 20s infinite linear;
+  border-right-color: transparent;
+  border-top-color: transparent;
+}
+
+@keyframes spinBronze {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes spinBronzeReverse {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+
+/* ------------------------------------- */
+/* CONTENT LAYOUT                        */
+/* ------------------------------------- */
+.content {
+  position: relative;
+  z-index: 10;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.waterHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid rgba(0, 240, 255, 0.4);
+  align-items: center;
+}
+
+.tideLink {
+  color: #00f0ff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+.tideLink:hover {
+  color: #b48e4b;
+  text-shadow: 0 0 20px #b48e4b;
+  letter-spacing: 6px;
+}
+
+/* ------------------------------------- */
+/* ROGUE GRID                            */
+/* ------------------------------------- */
+.rogueGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  margin-bottom: 6rem;
+}
+@media (min-width: 1024px) {
+  .rogueGrid { 
+    grid-template-columns: 500px 1fr; 
+    align-items: center;
+  }
+}
+
+.waterPortraitBox {
+  width: 100%;
+  height: 700px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.waterCausticsContainer {
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 300px;
+  background: linear-gradient(to top, rgba(0, 240, 255, 0.1) 0%, transparent 100%);
+  z-index: 15;
+  pointer-events: none;
+}
+
+.harborPortrait {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 110%; /* Break box slightly */
+  object-fit: contain; 
+  object-position: bottom center;
+  z-index: 10;
+  filter: drop-shadow(0px -10px 30px rgba(0, 240, 255, 0.3));
+  transition: all 0.5s ease;
+}
+
+.waterPortraitBox:hover .harborPortrait {
+  filter: drop-shadow(0px -10px 40px rgba(180, 142, 75, 0.6));
+  transform: translateY(-10px);
+}
+
+/* ------------------------------------- */
+/* ARTIFACT PANEL                        */
+/* ------------------------------------- */
+.artifactPanel {
+  flex: 1;
+  padding: 4rem;
+  background: linear-gradient(90deg, rgba(14, 59, 67, 0.6) 0%, rgba(6, 17, 19, 0.8) 100%);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  position: relative;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.8);
+}
+
+.bronzeBorderLeft {
+  position: absolute;
+  top: 10%; bottom: 10%; left: -2px;
+  width: 4px;
+  background: #b48e4b;
+  box-shadow: 0 0 20px #b48e4b;
+}
+
+.oceanName {
+  font-size: clamp(4rem, 7vw, 7rem);
+  color: #fff;
+  margin: 0;
+  letter-spacing: 8px;
+  font-weight: 300;
+  text-shadow: 0 5px 20px rgba(0, 240, 255, 0.6);
+}
+
+.rogueSubtitle {
+  font-size: 1.5rem;
+  color: #b48e4b;
+  margin-top: 10px;
+  margin-bottom: 3rem;
+  font-weight: 500;
+  letter-spacing: 6px;
+}
+
+.oceanLore {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #cbd5e1;
+  font-family: var(--font-body), sans-serif;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.roleBronzeBox {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: rgba(180, 142, 75, 0.1);
+  color: #b48e4b;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 4px;
+  border: 1px solid rgba(180, 142, 75, 0.4);
+  margin-bottom: 2rem;
+}
+
+.roleIconBronze {
+  width: 30px;
+  height: 30px;
+  filter: invert(65%) sepia(45%) saturate(543%) hue-rotate(352deg) brightness(88%) contrast(85%); /* #b48e4b approximation */
+}
+
+.waterPlayer button {
+  background: transparent !important;
+  color: #00f0ff !important;
+  border: 1px solid #00f0ff !important;
+  font-family: var(--font-heading), sans-serif !important;
+  letter-spacing: 4px !important;
+  border-radius: 0 !important;
+  transition: all 0.4s ease !important;
+}
+.waterPlayer button:hover {
+  background: rgba(0, 240, 255, 0.2) !important;
+  border-color: #b48e4b !important;
+  color: #b48e4b !important;
+  box-shadow: 0 0 20px rgba(180, 142, 75, 0.4) !important;
+}
+
+/* ------------------------------------- */
+/* WATER ABILITIES                       */
+/* ------------------------------------- */
+.tideHeader {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.tideTitle {
+  font-size: 2.5rem;
+  color: #cbd5e1;
+  margin: 0;
+  letter-spacing: 8px;
+  font-weight: 300;
+}
+
+.bronzeLine {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, #b48e4b, transparent);
+}
+
+.torrentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 3rem;
+}
+
+/* Base Module Styling */
+.waterModule {
+  background: rgba(6, 17, 19, 0.9);
+  border: 1px solid rgba(0, 240, 255, 0.1);
+  padding: 3rem;
+  position: relative;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+
+/* Cascading Tide Magic */
+.cascadingTide {
+  position: absolute;
+  bottom: -100%; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to top, rgba(0, 240, 255, 0.3) 0%, rgba(14, 59, 67, 0.8) 100%);
+  z-index: 0;
+  transition: all 0.6s cubic-bezier(0.25, 1.2, 0.5, 1);
+}
+
+.waterModule:hover {
+  border-color: #00f0ff;
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 240, 255, 0.2);
+}
+
+.waterModule:hover .cascadingTide {
+  bottom: 0; /* WASHES UP THE DIV! */
+}
+
+.waterIconBox {
+  width: 70px; height: 70px;
+  background: transparent;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.waterIcon {
+  width: 50px;
+  height: 50px;
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+  transition: all 0.3s ease;
+}
+.waterModule:hover .waterIcon {
+  filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.8));
+}
+
+.waterData {
+  position: relative;
+  z-index: 2;
+}
+
+.waterName {
+  font-size: 2rem;
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+  letter-spacing: 4px;
+}
+
+.waterType {
+  display: inline-block;
+  color: #b48e4b;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.waterText {
+  color: #9ba4b5;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+  font-family: var(--font-body), sans-serif;
+}
+.waterModule:hover .waterText {
+  color: #fff;
+}

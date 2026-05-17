@@ -1,0 +1,414 @@
+.kjMain {
+    min-height: 100vh;
+    background-color: #0f0f0f;
+    /* Pitch Obsidian Canvas */
+    color: #fff;
+    font-family: var(--font-outfit), sans-serif;
+    position: relative;
+    overflow-x: hidden;
+    padding: 2rem;
+}
+
+/* ------------------------------------- */
+/* VECTOR POSTER BACKGROUND              */
+/* ------------------------------------- */
+.blueprintBackgroundContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.vectorCircle {
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 800px;
+    height: 800px;
+    border: 4px dashed rgba(250, 222, 0, 0.2);
+    /* Tech Yellow */
+    border-radius: 50%;
+    animation: slowSpin 60s infinite linear;
+}
+
+.vectorCross {
+    position: absolute;
+    bottom: -10%;
+    right: -5%;
+    width: 600px;
+    height: 600px;
+    animation: slowSpin 80s infinite linear reverse;
+    opacity: 0.15;
+}
+
+.crossBar1,
+.crossBar2 {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #fade00;
+    transform-origin: center;
+}
+
+.crossBar1 {
+    transform: rotate(45deg);
+}
+
+.crossBar2 {
+    transform: rotate(-45deg);
+}
+
+@keyframes slowSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* ------------------------------------- */
+/* CONTENT LAYOUT                        */
+/* ------------------------------------- */
+.content {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.hazardHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 4px solid #fade00;
+    align-items: center;
+}
+
+.hazardLink {
+    color: #fade00;
+    text-decoration: none;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    font-weight: 800;
+    background: #0f0f0f;
+    padding: 5px 20px;
+    transition: all 0.3s ease;
+    font-family: var(--font-tech), sans-serif;
+}
+
+.hazardLink:hover {
+    background: #fade00;
+    color: #0f0f0f;
+    box-shadow: 10px 10px 0 rgba(46, 251, 224, 0.6);
+}
+
+/* ------------------------------------- */
+/* INVENTOR GRID                         */
+/* ------------------------------------- */
+.inventorGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    margin-bottom: 6rem;
+}
+
+@media (min-width: 1024px) {
+    .inventorGrid {
+        grid-template-columns: 500px 1fr;
+        align-items: center;
+    }
+}
+
+.techPortraitBox {
+    width: 100%;
+    height: 700px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.hazardStripesBackground {
+    position: absolute;
+    top: 10%;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    background: repeating-linear-gradient(45deg,
+            rgba(250, 222, 0, 0.1),
+            rgba(250, 222, 0, 0.1) 20px,
+            rgba(0, 0, 0, 0.4) 20px,
+            rgba(0, 0, 0, 0.4) 40px);
+    border: 2px solid #fade00;
+    z-index: 5;
+    transition: all 0.5s ease;
+}
+
+.kjPortrait {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 110%;
+    object-fit: contain;
+    object-position: bottom center;
+    z-index: 10;
+    filter: drop-shadow(0px -10px 30px rgba(0, 0, 0, 0.8));
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.techPortraitBox:hover .hazardStripesBackground {
+    background: repeating-linear-gradient(45deg,
+            rgba(250, 222, 0, 0.8),
+            rgba(250, 222, 0, 0.8) 20px,
+            rgba(0, 0, 0, 0.8) 20px,
+            rgba(0, 0, 0, 0.8) 40px);
+    box-shadow: 15px 15px 0 #2efbe0;
+    /* Cyan box shadow offset */
+    transform: translate(-10px, -10px);
+}
+
+.techPortraitBox:hover .kjPortrait {
+    filter: drop-shadow(0px -10px 40px rgba(250, 222, 0, 0.6));
+    transform: scale(1.05) translateY(-20px);
+}
+
+/* ------------------------------------- */
+/* TECH PANEL                            */
+/* ------------------------------------- */
+.techPanel {
+    flex: 1;
+    padding: 4rem;
+    background: #151515;
+    border-right: 15px solid #fade00;
+    position: relative;
+}
+
+.techPanel::before {
+    content: "X X X X X X";
+    position: absolute;
+    top: -15px;
+    left: 15px;
+    color: #2efbe0;
+    font-family: var(--font-tech);
+    font-size: 1.5rem;
+    letter-spacing: 8px;
+}
+
+.kjName {
+    font-size: clamp(4rem, 7vw, 7rem);
+    color: #fff;
+    margin: 0;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.techSubtitle {
+    font-size: 1.5rem;
+    color: #fade00;
+    margin-top: 10px;
+    margin-bottom: 3rem;
+    font-family: var(--font-tech), monospace;
+    letter-spacing: 4px;
+}
+
+.kjLore {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #e2e8f0;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 2;
+}
+
+.roleBox {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba(250, 222, 0, 0.1);
+    color: #fade00;
+    padding: 1rem 2rem;
+    font-family: var(--font-tech), monospace;
+    font-size: 1.5rem;
+    border: 1px solid #fade00;
+    margin-bottom: 2rem;
+}
+
+.roleIconPurple {
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(0 0 5px #fade00);
+}
+
+.kjPlayer button {
+    background: #fade00 !important;
+    color: #151515 !important;
+    border: none !important;
+    font-family: var(--font-tech), monospace !important;
+    letter-spacing: 2px !important;
+    border-radius: 0 !important;
+    font-weight: bold !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 5px 5px 0px #2efbe0 !important;
+}
+
+.kjPlayer button:hover {
+    background: #2efbe0 !important;
+    color: #151515 !important;
+    box-shadow: 5px 5px 0px #fade00 !important;
+    transform: translate(-3px, -3px) !important;
+}
+
+/* ------------------------------------- */
+/* BOT ABILITIES                         */
+/* ------------------------------------- */
+.botHeader {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.botTitle {
+    font-size: 2.5rem;
+    color: #fff;
+    margin: 0;
+    font-family: var(--font-tech), monospace;
+    letter-spacing: 2px;
+}
+
+.yellowLine {
+    flex: 1;
+    height: 4px;
+    background: repeating-linear-gradient(90deg, #fade00, #fade00 10px, transparent 10px, transparent 20px);
+}
+
+.botGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+}
+
+/* Base Module Styling */
+.blueprintModule {
+    background: #111;
+    border: 2px solid #fade00;
+    padding: 3rem;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.scannerLine {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #2efbe0;
+    box-shadow: 0 0 20px 10px rgba(46, 251, 224, 0.4);
+    z-index: 10;
+    transition: none;
+}
+
+.blueprintModule:hover {
+    background: transparent;
+    border-color: #2efbe0;
+    border-style: dashed;
+    transform: translateY(-5px);
+    box-shadow: inset 0 0 50px rgba(46, 251, 224, 0.1);
+}
+
+.blueprintModule:hover .scannerLine {
+    animation: laserScan 1.5s infinite linear;
+}
+
+@keyframes laserScan {
+    0% {
+        top: 0%;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
+
+.botIconBox {
+    width: 70px;
+    height: 70px;
+    background: rgba(250, 222, 0, 0.1);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-left: 10px;
+    border-left: 5px solid #fade00;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.blueprintModule:hover .botIconBox {
+    background: transparent;
+    border-left-color: #2efbe0;
+}
+
+.botIcon {
+    width: 50px;
+    height: 50px;
+    filter: drop-shadow(0 0 5px rgba(250, 222, 0, 0.5));
+    transition: all 0.3s ease;
+}
+
+.blueprintModule:hover .botIcon {
+    filter: drop-shadow(0 0 10px #2efbe0) hue-rotate(90deg);
+    /* Shift to Cyan */
+    transform: scale(1.1);
+}
+
+.botData {
+    position: relative;
+    z-index: 2;
+}
+
+.botAbilityName {
+    font-size: 2rem;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    font-weight: 800;
+}
+
+.botType {
+    display: inline-block;
+    color: #fade00;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    font-family: var(--font-tech), monospace;
+    transition: color 0.3s ease;
+}
+
+.blueprintModule:hover .botType {
+    color: #2efbe0;
+}
+
+.botText {
+    color: #9ba4b5;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.blueprintModule:hover .botText {
+    color: #fff;
+}

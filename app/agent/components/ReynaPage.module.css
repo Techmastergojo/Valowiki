@@ -1,0 +1,395 @@
+.reynaMain {
+    position: relative;
+    min-height: 100vh;
+    background: #080410;
+    color: #fff;
+    overflow: hidden;
+    font-family: var(--font-cinzel, 'Cinzel', serif);
+}
+
+/* === SOUL DEVOURING BACKGROUND === */
+.soulBackground {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Floating soul orbs */
+.soulOrb {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139, 47, 201, 0.8), transparent 70%);
+    animation: soulFloat 8s ease-in-out infinite;
+}
+
+@keyframes soulFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: translateY(-60px) scale(1.3);
+        opacity: 0.7;
+    }
+}
+
+/* SIGNATURE: Dark tendrils reaching inward from screen edges */
+.tendril {
+    position: absolute;
+    background: linear-gradient(90deg, rgba(139, 47, 201, 0.4), transparent);
+    height: 2px;
+    animation: tendrilReach 6s ease-in-out infinite;
+    transform-origin: left center;
+}
+
+.tendrilRight {
+    right: 0;
+    background: linear-gradient(270deg, rgba(139, 47, 201, 0.4), transparent);
+    transform-origin: right center;
+}
+
+@keyframes tendrilReach {
+    0% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+
+    30% {
+        transform: scaleX(1);
+        opacity: 0.6;
+    }
+
+    60% {
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+}
+
+/* SIGNATURE: Empress eye glow pulsing at center-top */
+.empressEye {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 40px;
+    background: radial-gradient(ellipse, rgba(139, 47, 201, 0.6), transparent 70%);
+    border-radius: 50%;
+    animation: eyeGlow 3s ease-in-out infinite;
+}
+
+@keyframes eyeGlow {
+
+    0%,
+    100% {
+        opacity: 0.2;
+        transform: translateX(-50%) scaleX(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: translateX(-50%) scaleX(1.3);
+    }
+}
+
+/* SIGNATURE: Soul harvest lines — souls being pulled toward center */
+.soulLine {
+    position: absolute;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(199, 125, 255, 0.5), transparent);
+    animation: soulPull 4s ease-in infinite;
+}
+
+@keyframes soulPull {
+    0% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0.6;
+    }
+
+    70% {
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+.darkOverlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 80%, rgba(139, 47, 201, 0.08), transparent 60%);
+    z-index: 1;
+}
+
+/* === CONTENT === */
+.content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+}
+
+.empressHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(139, 47, 201, 0.4);
+}
+
+.empressLink {
+    color: #8b2fc9;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.empressLink:hover {
+    color: #c77dff;
+    text-shadow: 0 0 20px rgba(139, 47, 201, 0.5);
+}
+
+/* === GRID === */
+.devourGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 4rem;
+}
+
+.imageCol {
+    display: flex;
+    justify-content: center;
+}
+
+.eyeBox {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 3/4;
+    background: linear-gradient(180deg, #0d0520, #1a0a30);
+    border: 2px solid rgba(139, 47, 201, 0.4);
+    overflow: hidden;
+    animation: eyePulse 4s ease-in-out infinite;
+}
+
+@keyframes eyePulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 30px rgba(139, 47, 201, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 60px rgba(139, 47, 201, 0.5), inset 0 0 40px rgba(139, 47, 201, 0.1);
+    }
+}
+
+.reynaPortrait {
+    width: 110%;
+    height: 110%;
+    object-fit: cover;
+    object-position: center top;
+    margin-left: -5%;
+    margin-top: -3%;
+    filter: contrast(1.1) saturate(1.3);
+    transition: transform 0.5s ease;
+}
+
+.eyeBox:hover .reynaPortrait {
+    transform: scale(1.06);
+    filter: contrast(1.2) saturate(1.5) hue-rotate(-5deg);
+}
+
+/* === LORE === */
+.loreCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.empressPanel {
+    padding: 2rem;
+    background: rgba(139, 47, 201, 0.04);
+    border-left: 3px solid #8b2fc9;
+}
+
+.reynaName {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 900;
+    color: #8b2fc9;
+    letter-spacing: 8px;
+    line-height: 0.9;
+    text-shadow: 2px 2px 0 rgba(47, 38, 100, 0.5);
+    margin: 0 0 0.5rem 0;
+}
+
+.soulSubtitle {
+    font-size: 0.95rem;
+    color: #662d62;
+    letter-spacing: 6px;
+    margin: 0 0 1.5rem 0;
+    font-weight: 700;
+}
+
+.reynaLore {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #b0a0c0;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    margin-bottom: 1.5rem;
+}
+
+.roleBox {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.2rem;
+    background: rgba(139, 47, 201, 0.1);
+    border: 1px solid rgba(139, 47, 201, 0.3);
+    width: fit-content;
+    margin-bottom: 1.5rem;
+}
+
+.roleIconVamp {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(0.4) sepia(1) hue-rotate(240deg) saturate(3);
+}
+
+.roleBox span {
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    color: #8b2fc9;
+    font-weight: 700;
+}
+
+.soulPlayer {
+    margin-top: 1rem;
+}
+
+/* === ABILITIES === */
+.devourHeader {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.devourTitle {
+    font-size: 1.8rem;
+    color: #8b2fc9;
+    letter-spacing: 8px;
+    margin: 0 0 0.5rem 0;
+}
+
+.purpleLine {
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, #8b2fc9, #662d62);
+    margin: 0 auto;
+}
+
+.devourGrid2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.soulModule {
+    position: relative;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(139, 47, 201, 0.06), rgba(47, 38, 100, 0.04));
+    border: 1px solid rgba(139, 47, 201, 0.15);
+    transition: all 0.3s ease;
+}
+
+.soulModule:hover {
+    border-color: #8b2fc9;
+    background: linear-gradient(135deg, rgba(139, 47, 201, 0.12), rgba(47, 38, 100, 0.08));
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(139, 47, 201, 0.2);
+}
+
+.soulIconBox {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    background: rgba(139, 47, 201, 0.12);
+    border: 2px solid rgba(139, 47, 201, 0.4);
+    border-radius: 50%;
+}
+
+.soulIcon {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) invert(1);
+}
+
+.soulData {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.soulAbilityName {
+    font-size: 1rem;
+    color: #c77dff;
+    letter-spacing: 3px;
+    margin: 0;
+}
+
+.soulType {
+    font-size: 0.7rem;
+    color: #662d62;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.soulText {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: #888;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    margin: 0;
+}
+
+.devourBorder {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #8b2fc9, transparent);
+}
+
+@media (max-width: 768px) {
+    .devourGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .content {
+        padding: 1rem 1.5rem;
+    }
+}

@@ -1,0 +1,435 @@
+.brimstoneMain {
+    min-height: 100vh;
+    background-color: #121415;
+    /* Deep tactical smoke */
+    color: #dbdbdb;
+    font-family: var(--font-tech), monospace;
+    position: relative;
+    overflow-x: hidden;
+    padding: 2rem;
+}
+
+/* ------------------------------------- */
+/* RADAR BACKGROUND OVERLAY              */
+/* ------------------------------------- */
+.radarBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.radarBackground::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150vw;
+    height: 150vw;
+    transform: translate(-50%, -50%);
+    border: 2px solid rgba(249, 108, 37, 0.1);
+    border-radius: 50%;
+    box-shadow: inset 0 0 100px rgba(249, 108, 37, 0.05);
+}
+
+.radarSweep {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150vw;
+    height: 150vw;
+    transform-origin: 0 0;
+    background: conic-gradient(from 0deg,
+            rgba(249, 108, 37, 0) 0deg,
+            rgba(249, 108, 37, 0.05) 50deg,
+            rgba(249, 108, 37, 0.4) 90deg,
+            rgba(249, 108, 37, 0) 91deg);
+    animation: radarSpin 5s linear infinite;
+    z-index: 0;
+}
+
+@keyframes radarSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.gridOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(249, 108, 37, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(249, 108, 37, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ------------------------------------- */
+/* CONTENT LAYOUT                        */
+/* ------------------------------------- */
+.content {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.hudHeaderRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f96c25;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+
+.abortCommand {
+    color: #f96c25;
+    text-decoration: none;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    background: rgba(249, 108, 37, 0.1);
+    padding: 0.5rem 1rem;
+    border: 1px solid #f96c25;
+    transition: all 0.2s ease;
+}
+
+.abortCommand:hover {
+    background: #f96c25;
+    color: #121415;
+}
+
+/* ------------------------------------- */
+/* TACTICAL GRID (BULLETPROOF MATRIX)    */
+/* ------------------------------------- */
+.tacticalGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-bottom: 5rem;
+}
+
+@media (min-width: 1024px) {
+    .tacticalGrid {
+        grid-template-columns: 450px 1fr;
+        align-items: stretch;
+    }
+}
+
+.tacticalColLeft {
+    width: 100%;
+}
+
+.commanderFrame {
+    width: 100%;
+    height: 600px;
+    /* Rigid anchor */
+    background: rgba(26, 30, 35, 0.8);
+    border: 2px solid #3a4148;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.crosshairTL,
+.crosshairTR,
+.crosshairBL,
+.crosshairBR {
+    position: absolute;
+    color: #f96c25;
+    font-size: 12px;
+    z-index: 20;
+}
+
+.crosshairTL {
+    top: 5px;
+    left: 5px;
+}
+
+.crosshairTR {
+    top: 5px;
+    right: 5px;
+}
+
+.crosshairBL {
+    bottom: 5px;
+    left: 5px;
+}
+
+.crosshairBR {
+    bottom: 5px;
+    right: 5px;
+}
+
+.commanderPortrait {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Absolutely flawless non-breaking scale */
+    z-index: 10;
+    display: block;
+    filter: grayscale(0.2) contrast(1.2);
+}
+
+.scanLine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: rgba(249, 108, 37, 0.5);
+    box-shadow: 0 0 10px #f96c25;
+    z-index: 15;
+    animation: scanDrop 4s ease-in-out infinite;
+}
+
+@keyframes scanDrop {
+    0% {
+        top: 0;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+/* ------------------------------------- */
+/* TACTICAL COMMS BLOCK                  */
+/* ------------------------------------- */
+.tacticalColRight {
+    display: flex;
+    flex-direction: column;
+}
+
+.dossierTerminal {
+    flex: 1;
+    padding: 3rem;
+    background: rgba(26, 30, 35, 0.85);
+    border: 1px solid #4a545e;
+    border-left: 5px solid #f96c25;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.terminalHeader {
+    display: flex;
+    justify-content: space-between;
+    color: #88929b;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+}
+
+.blinkingNode {
+    color: #f96c25;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.callsign {
+    font-size: clamp(3rem, 6vw, 6rem);
+    color: #fff;
+    margin: 0;
+    text-shadow: 0 0 20px rgba(249, 108, 37, 0.5);
+    letter-spacing: 4px;
+}
+
+.intelText {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #b0bbc5;
+    font-family: var(--font-body), sans-serif;
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.tacPill {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: #f96c25;
+    color: #121415;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    align-self: flex-start;
+    margin-bottom: 2rem;
+}
+
+.roleIconTac {
+    width: 25px;
+    height: 25px;
+    filter: invert(1);
+}
+
+/* ------------------------------------- */
+/* PAYLOAD ABILITIES GRID                */
+/* ------------------------------------- */
+.arsenalHeader {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.arsenalTitle {
+    font-size: 2.5rem;
+    color: #f96c25;
+    margin: 0;
+    letter-spacing: 3px;
+    white-space: nowrap;
+}
+
+.arsenalLine {
+    flex: 1;
+    height: 2px;
+    background: #f96c25;
+}
+
+.payloadGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.payloadBlock {
+    background: rgba(26, 30, 35, 0.6);
+    border: 1px solid #3a4148;
+    padding: 2rem;
+    position: relative;
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+
+.targetCrosshair {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0px;
+    height: 0px;
+    border-radius: 50%;
+    border: 1px solid #f96c25;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+}
+
+.payloadBlock:hover {
+    border-color: #f96c25;
+    background: rgba(26, 30, 35, 0.9);
+}
+
+/* SNAP CROSSHAIR ON HOVER */
+.payloadBlock:hover .targetCrosshair {
+    width: 150px;
+    height: 150px;
+    opacity: 0.2;
+}
+
+.payloadBlock:hover .targetCrosshair::before,
+.payloadBlock:hover .targetCrosshair::after {
+    content: '';
+    position: absolute;
+    background: #f96c25;
+}
+
+.payloadBlock:hover .targetCrosshair::before {
+    top: 50%;
+    left: -20px;
+    right: -20px;
+    height: 1px;
+    transform: translateY(-50%);
+}
+
+.payloadBlock:hover .targetCrosshair::after {
+    left: 50%;
+    top: -20px;
+    bottom: -20px;
+    width: 1px;
+    transform: translateX(-50%);
+}
+
+.payloadIconBox {
+    width: 60px;
+    height: 60px;
+    background: #f96c25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.payloadIcon {
+    width: 40px;
+    height: 40px;
+    filter: invert(1);
+}
+
+.payloadData h3 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    position: relative;
+    z-index: 2;
+}
+
+.payloadSlot {
+    display: inline-block;
+    color: #f96c25;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.payloadData p {
+    color: #88929b;
+    line-height: 1.5;
+    font-size: 0.95rem;
+    font-family: var(--font-body), sans-serif;
+    position: relative;
+    z-index: 2;
+}

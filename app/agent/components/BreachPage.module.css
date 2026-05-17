@@ -1,0 +1,382 @@
+.breachMain {
+    min-height: 100vh;
+    background-color: #233320;
+    /* Deep military/forest green */
+    color: #dbdbdb;
+    font-family: var(--font-heading), sans-serif;
+    /* Anton */
+    position: relative;
+    overflow-x: hidden;
+    padding: 2rem;
+}
+
+/* Diagonal Fault Line Graphics */
+.faultLineBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: repeating-linear-gradient(45deg,
+            rgba(0, 0, 0, 0.2),
+            rgba(0, 0, 0, 0.2) 20px,
+            transparent 20px,
+            transparent 40px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.machineryOverlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40vw;
+    height: 100vh;
+    background: #ff5722;
+    clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+    opacity: 0.1;
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.headerRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 8px solid #ff5722;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+
+.backLink {
+    color: #ff5722;
+    text-decoration: none;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    transition: transform 0.1s ease;
+    display: inline-block;
+}
+
+.backLink:hover {
+    transform: translateX(-10px);
+}
+
+/* ------------------------------------- */
+/* BULLETPROOF CSS GRID FOR KINETIC AREA */
+/* ------------------------------------- */
+.kineticGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-bottom: 5rem;
+}
+
+@media (min-width: 1024px) {
+    .kineticGrid {
+        grid-template-columns: 450px 1fr;
+        /* Rigid 450px column for portrait, remaining space for text */
+        align-items: start;
+    }
+}
+
+.kineticColLeft {
+    width: 100%;
+}
+
+.heavyPortraitBox {
+    width: 100%;
+    height: 600px;
+    /* Absolute strictly enforced height */
+    background: #1a1a1a;
+    border: 10px solid #4a4a4a;
+    box-shadow: 20px 20px 0px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    /* Guarantee nothing bleeds out of the box */
+}
+
+/* Hazard striping */
+.hazardStripesLeft {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    background: repeating-linear-gradient(45deg,
+            #ffc107,
+            #ffc107 10px,
+            #000 10px,
+            #000 20px);
+    z-index: 0;
+}
+
+.heavyPortraitImg {
+    position: absolute;
+    top: 0;
+    left: 40px;
+    /* Offset naturally by the 40px stripe */
+    width: calc(100% - 40px);
+    /* Fill the box completely */
+    height: 100%;
+    /* Fill the box completely */
+    object-fit: contain;
+    /* Absolutely forces aspect ratio inside the box without cropping */
+    z-index: 10;
+    display: block;
+}
+
+/* SHAKE ANIMATION ON HOVER */
+.heavyPortraitBox:hover .heavyPortraitImg {
+    animation: earthquake 0.3s 7;
+}
+
+@keyframes earthquake {
+    0% {
+        transform: translate(2px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(0px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(2px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(2px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+.kineticColRight {
+    padding: 3rem;
+    background: #2a2a2a;
+    box-shadow: inset 0 0 50px #000;
+    border: 15px solid #4a4a4a;
+    position: relative;
+}
+
+.screws {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    pointer-events: none;
+}
+
+.screw {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #111;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    font-size: 14px;
+}
+
+.screw:nth-child(1) {
+    top: 0;
+    left: 0;
+    transform: rotate(45deg);
+}
+
+.screw:nth-child(2) {
+    top: 0;
+    right: 0;
+    transform: rotate(15deg);
+}
+
+.screw:nth-child(3) {
+    bottom: 0;
+    left: 0;
+    transform: rotate(85deg);
+}
+
+.screw:nth-child(4) {
+    bottom: 0;
+    right: 0;
+    transform: rotate(115deg);
+}
+
+.impactName {
+    font-size: clamp(4rem, 8vw, 7rem);
+    color: #ff5722;
+    margin: 0;
+    line-height: 0.9;
+    text-shadow: 5px 5px 0 #000;
+    letter-spacing: 2px;
+}
+
+.cautionTape {
+    display: flex;
+    background: #ffc107;
+    color: #000;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 5px 0;
+    font-size: 1.5rem;
+    margin: 2rem 0;
+    transform: rotate(-2deg);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.cautionTape span {
+    padding: 0 20px;
+}
+
+.steelText {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    color: #ccc;
+    font-family: var(--font-body), sans-serif;
+    border-left: 10px solid #ff5722;
+    padding-left: 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
+}
+
+.heavyPill {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: #ff5722;
+    color: #000;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    box-shadow: 5px 5px 0 #000;
+}
+
+.roleIcon {
+    width: 30px;
+    height: 30px;
+    filter: invert(1);
+}
+
+.audioWrapper button {
+    font-family: var(--font-heading) !important;
+    background: #ffc107 !important;
+    color: #000 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: 5px 5px 0 #000 !important;
+}
+
+.abilitiesHeaderBlock {
+    background: #ff5722;
+    padding: 1rem;
+    margin-bottom: 3rem;
+    box-shadow: 10px 10px 0 #000;
+}
+
+.hazardTitle {
+    font-size: 4rem;
+    color: #000;
+    margin: 0;
+    text-align: center;
+    letter-spacing: 5px;
+}
+
+.seismicGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.steelBlock {
+    background: #333;
+    border: 8px solid #4a4a4a;
+    padding: 3rem 2rem 2rem 2rem;
+    position: relative;
+    transition: transform 0.1s;
+}
+
+.steelBlock:hover {
+    animation: earthquakeUI 0.4s 5;
+    border-color: #ff5722;
+}
+
+@keyframes earthquakeUI {
+    0% {
+        transform: translate(2px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(0px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(2px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(2px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}

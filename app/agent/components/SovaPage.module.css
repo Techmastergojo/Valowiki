@@ -1,0 +1,414 @@
+.sovaMain {
+    position: relative;
+    min-height: 100vh;
+    background: #060a14;
+    color: #fff;
+    overflow: hidden;
+    font-family: var(--font-heading, 'Outfit', sans-serif);
+}
+
+.arcticBackground {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.snowflake {
+    position: absolute;
+    background: rgba(200, 220, 255, 0.4);
+    border-radius: 50%;
+    animation: snowDrift 12s linear infinite;
+}
+
+@keyframes snowDrift {
+    0% {
+        transform: translateY(-10vh) translateX(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.5;
+    }
+
+    90% {
+        opacity: 0.2;
+    }
+
+    100% {
+        transform: translateY(100vh) translateX(40px);
+        opacity: 0;
+    }
+}
+
+.scanLine {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(53, 82, 133, 0.5), transparent);
+    animation: reconSweep 4s ease-in-out infinite;
+    top: 50%;
+}
+
+@keyframes reconSweep {
+    0% {
+        top: 0%;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+.frostOverlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(53, 82, 133, 0.08), transparent 50%);
+    z-index: 1;
+}
+
+/* SIGNATURE: Recon bolt sweeping arc — scanning horizontal line */
+.reconArc {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 20%, rgba(110, 168, 254, 0.6) 50%, transparent 80%);
+    animation: reconSweepFull 5s ease-in-out infinite;
+}
+
+@keyframes reconSweepFull {
+    0% {
+        top: -5%;
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.7;
+    }
+
+    80% {
+        opacity: 0.4;
+    }
+
+    100% {
+        top: 105%;
+        opacity: 0;
+    }
+}
+
+/* SIGNATURE: Owl drone circular flight paths */
+.dronePath {
+    position: absolute;
+    border: 1px solid rgba(110, 168, 254, 0.15);
+    border-radius: 50%;
+    animation: droneOrbit 12s linear infinite;
+}
+
+.dronePath::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: rgba(110, 168, 254, 0.7);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(110, 168, 254, 0.5);
+}
+
+@keyframes droneOrbit {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* SIGNATURE: Arrow trajectory diagonal lines */
+.arrowTrajectory {
+    position: absolute;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(110, 168, 254, 0.4), transparent);
+    animation: arrowFly 3s ease-out infinite;
+    transform: rotate(-30deg);
+}
+
+@keyframes arrowFly {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+
+    30% {
+        height: 120px;
+        opacity: 0.6;
+    }
+
+    70% {
+        opacity: 0.2;
+    }
+
+    100% {
+        height: 200px;
+        opacity: 0;
+        transform: rotate(-30deg) translateY(-100px);
+    }
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+}
+
+.hunterHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(53, 82, 133, 0.4);
+}
+
+.hunterLink {
+    color: #355285;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.hunterLink:hover {
+    color: #6ea8fe;
+    text-shadow: 0 0 20px rgba(53, 82, 133, 0.5);
+}
+
+.reconGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 4rem;
+}
+
+.imageCol {
+    display: flex;
+    justify-content: center;
+}
+
+.bowBox {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 3/4;
+    background: linear-gradient(180deg, #0a1225, #101c47);
+    border: 2px solid rgba(53, 82, 133, 0.4);
+    overflow: hidden;
+    animation: frostPulse 5s ease-in-out infinite;
+}
+
+@keyframes frostPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(53, 82, 133, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 50px rgba(110, 168, 254, 0.3);
+    }
+}
+
+.sovaPortrait {
+    width: 110%;
+    height: 110%;
+    object-fit: cover;
+    object-position: center top;
+    margin-left: -5%;
+    margin-top: -3%;
+    filter: contrast(1.1) saturate(1.1) brightness(1.05);
+    transition: transform 0.5s ease;
+}
+
+.bowBox:hover .sovaPortrait {
+    transform: scale(1.06);
+}
+
+.loreCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hunterPanel {
+    padding: 2rem;
+    background: rgba(53, 82, 133, 0.04);
+    border-left: 3px solid #355285;
+}
+
+.sovaName {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 800;
+    color: #6ea8fe;
+    letter-spacing: 6px;
+    line-height: 0.9;
+    margin: 0 0 0.5rem 0;
+}
+
+.arcticSubtitle {
+    font-size: 0.9rem;
+    color: #355285;
+    letter-spacing: 6px;
+    margin: 0 0 1.5rem 0;
+    font-weight: 700;
+}
+
+.sovaLore {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #8faac8;
+    margin-bottom: 1.5rem;
+}
+
+.roleBox {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.2rem;
+    background: rgba(53, 82, 133, 0.08);
+    border: 1px solid rgba(53, 82, 133, 0.3);
+    width: fit-content;
+    margin-bottom: 1.5rem;
+}
+
+.roleIconBlue {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(0.6) sepia(1) hue-rotate(190deg) saturate(3);
+}
+
+.roleBox span {
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    color: #6ea8fe;
+    font-weight: 700;
+}
+
+.reconPlayer {
+    margin-top: 1rem;
+}
+
+.furyHeader {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.furyTitle {
+    font-size: 1.6rem;
+    color: #6ea8fe;
+    letter-spacing: 8px;
+    margin: 0 0 0.5rem 0;
+}
+
+.iceLine {
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, #355285, #101c47);
+    margin: 0 auto;
+}
+
+.furyGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.arrowModule {
+    position: relative;
+    padding: 1.5rem;
+    background: rgba(53, 82, 133, 0.04);
+    border: 1px solid rgba(53, 82, 133, 0.15);
+    transition: all 0.3s ease;
+}
+
+.arrowModule:hover {
+    border-color: #355285;
+    background: rgba(53, 82, 133, 0.08);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(53, 82, 133, 0.15);
+}
+
+.arrowIconBox {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    background: rgba(53, 82, 133, 0.1);
+    border: 2px solid rgba(53, 82, 133, 0.3);
+}
+
+.arrowIcon {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) invert(1);
+}
+
+.arrowData {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.arrowAbilityName {
+    font-size: 0.95rem;
+    color: #6ea8fe;
+    letter-spacing: 3px;
+    margin: 0;
+}
+
+.arrowType {
+    font-size: 0.7rem;
+    color: #355285;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.arrowText {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: #888;
+    margin: 0;
+}
+
+.frostBorder {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #355285, transparent);
+}
+
+@media (max-width: 768px) {
+    .reconGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .content {
+        padding: 1rem 1.5rem;
+    }
+}

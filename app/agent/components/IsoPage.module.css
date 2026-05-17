@@ -1,0 +1,397 @@
+.isoMain {
+    min-height: 100vh;
+    background-color: #0b0a11;
+    /* Extremely Deep Void Black */
+    color: #fff;
+    font-family: var(--font-tech), sans-serif;
+    position: relative;
+    overflow-x: hidden;
+    padding: 2rem;
+}
+
+/* ------------------------------------- */
+/* INTERDIMENSIONAL VOID BACKGROUND      */
+/* ------------------------------------- */
+.voidBackgroundContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.voidGrid {
+    position: absolute;
+    top: -10vw;
+    left: -10vw;
+    bottom: -10vw;
+    right: -10vw;
+    background-image:
+        linear-gradient(rgba(161, 56, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(161, 56, 255, 0.05) 1px, transparent 1px);
+    background-size: 80px 80px;
+    transform: perspective(600px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+    animation: gridCrawl 20s infinite linear;
+}
+
+@keyframes gridCrawl {
+    0% {
+        transform: perspective(600px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+    }
+
+    100% {
+        transform: perspective(600px) rotateX(60deg) translateY(0px) translateZ(-200px);
+    }
+}
+
+.voidShardOne,
+.voidShardTwo {
+    position: absolute;
+    background: rgba(161, 56, 255, 0.1);
+    border: 1px solid rgba(161, 56, 255, 0.3);
+    box-shadow: 0 0 50px rgba(161, 56, 255, 0.1);
+    transform: translateZ(0);
+}
+
+.voidShardOne {
+    width: 600px;
+    height: 800px;
+    bottom: -20%;
+    right: -10%;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    animation: floatShard 40s infinite linear alternate;
+}
+
+.voidShardTwo {
+    width: 400px;
+    height: 600px;
+    top: -10%;
+    left: -5%;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    animation: floatShard 30s infinite linear alternate-reverse;
+}
+
+@keyframes floatShard {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(-50px) rotate(15deg);
+    }
+}
+
+
+/* ------------------------------------- */
+/* CONTENT LAYOUT                        */
+/* ------------------------------------- */
+.content {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.assassinHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(46, 251, 224, 0.4);
+    align-items: center;
+}
+
+.voidLink {
+    color: #2efbe0;
+    text-decoration: none;
+    font-size: 1.5rem;
+    letter-spacing: 6px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    padding: 5px 20px;
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+}
+
+.voidLink:hover {
+    background: rgba(46, 251, 224, 0.1);
+    text-shadow: 0 0 10px #2efbe0;
+    letter-spacing: 12px;
+}
+
+/* ------------------------------------- */
+/* CONTRACT GRID                         */
+/* ------------------------------------- */
+.contractGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    margin-bottom: 6rem;
+}
+
+@media (min-width: 1024px) {
+    .contractGrid {
+        grid-template-columns: 500px 1fr;
+        align-items: center;
+    }
+}
+
+.crystalPortraitBox {
+    width: 100%;
+    height: 700px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.crystalContainmentFrame {
+    position: absolute;
+    top: 10%;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    background: linear-gradient(180deg, transparent 50%, rgba(161, 56, 255, 0.15) 100%);
+    border: 2px solid rgba(161, 56, 255, 0.4);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 100%, 0 100%, 0% 25%);
+    z-index: 5;
+    transition: all 0.5s ease;
+}
+
+.isoPortrait {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 110%;
+    object-fit: contain;
+    object-position: bottom center;
+    z-index: 10;
+    filter: drop-shadow(0px -10px 30px rgba(161, 56, 255, 0.3));
+    transition: all 0.5s ease;
+}
+
+.crystalPortraitBox:hover .crystalContainmentFrame {
+    border-color: #2efbe0;
+    background: linear-gradient(180deg, transparent 50%, rgba(46, 251, 224, 0.15) 100%);
+    box-shadow: 0 0 30px rgba(46, 251, 224, 0.2);
+}
+
+.crystalPortraitBox:hover .isoPortrait {
+    filter: drop-shadow(0px -10px 40px rgba(46, 251, 224, 0.6));
+    transform: translateY(-10px);
+}
+
+/* ------------------------------------- */
+/* FIXER PANEL                           */
+/* ------------------------------------- */
+.fixerPanel {
+    flex: 1;
+    padding: 4rem;
+    background: rgba(11, 10, 17, 0.8);
+    border: 1px solid rgba(161, 56, 255, 0.2);
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
+    /* Cut bottom right corner */
+}
+
+.assassinName {
+    font-size: clamp(4rem, 7vw, 7rem);
+    color: #fff;
+    margin: 0;
+    letter-spacing: 12px;
+    font-weight: 300;
+    text-shadow: 2px 2px 0px #a138ff, -2px -2px 0px #2efbe0;
+    /* Minimal precision chromatic aberration */
+}
+
+.fixerSubtitle {
+    font-size: 1.5rem;
+    color: #2efbe0;
+    margin-top: 10px;
+    margin-bottom: 3rem;
+    font-weight: bold;
+    letter-spacing: 6px;
+}
+
+.voidLore {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #a4a8b7;
+    font-family: var(--font-body), sans-serif;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 2;
+}
+
+.roleHexBox {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba(161, 56, 255, 0.1);
+    color: #a138ff;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 4px;
+    border: 1px solid rgba(161, 56, 255, 0.4);
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+    margin-bottom: 2rem;
+}
+
+.roleIconPurple {
+    width: 30px;
+    height: 30px;
+    filter: invert(36%) sepia(85%) saturate(3016%) hue-rotate(264deg) brightness(98%) contrast(106%);
+    /* Magenta */
+}
+
+.voidPlayer button {
+    background: transparent !important;
+    color: #2efbe0 !important;
+    border: 1px solid #2efbe0 !important;
+    font-family: var(--font-tech), sans-serif !important;
+    letter-spacing: 4px !important;
+    border-radius: 0 !important;
+    transition: all 0.3s ease !important;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+}
+
+.voidPlayer button:hover {
+    background: rgba(46, 251, 224, 0.2) !important;
+    box-shadow: 0 0 20px rgba(46, 251, 224, 0.4) !important;
+}
+
+/* ------------------------------------- */
+/* CONSTRUCT ABILITIES                   */
+/* ------------------------------------- */
+.trapHeader {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.trapTitle {
+    font-size: 2.5rem;
+    color: #cbd5e1;
+    margin: 0;
+    letter-spacing: 8px;
+    font-weight: 300;
+}
+
+.amethystLine {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, #a138ff, transparent);
+}
+
+.constructGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+}
+
+/* Base Module Styling */
+.voidModule {
+    background: rgba(11, 10, 17, 0.9);
+    border: 1px solid rgba(161, 56, 255, 0.3);
+    padding: 3rem;
+    position: relative;
+    transition: all 0.3s ease;
+    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+}
+
+/* Reticle Lines that flash cyan on hover */
+.targetReticleLineTop {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: #2efbe0;
+    transition: all 0.4s ease;
+}
+
+.targetReticleLineBottom {
+    position: absolute;
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: #2efbe0;
+    transition: all 0.4s ease;
+}
+
+.voidModule:hover {
+    border-color: rgba(46, 251, 224, 0.8);
+    transform: scale(1.02);
+    box-shadow: 0 0 40px rgba(46, 251, 224, 0.2);
+}
+
+.voidModule:hover .targetReticleLineTop {
+    left: 0;
+}
+
+.voidModule:hover .targetReticleLineBottom {
+    right: 0;
+}
+
+.voidIconBox {
+    width: 70px;
+    height: 70px;
+    background: transparent;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.voidIcon {
+    width: 50px;
+    height: 50px;
+    transition: all 0.3s ease;
+}
+
+.voidModule:hover .voidIcon {
+    filter: drop-shadow(0 0 15px rgba(46, 251, 224, 0.8));
+}
+
+.voidData {
+    position: relative;
+    z-index: 2;
+}
+
+.voidName {
+    font-size: 2rem;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    font-weight: 500;
+    letter-spacing: 4px;
+}
+
+.voidType {
+    display: inline-block;
+    color: #a138ff;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.voidText {
+    color: #9ba4b5;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    font-family: var(--font-body), sans-serif;
+}
+
+.voidModule:hover .voidText {
+    color: #fff;
+}

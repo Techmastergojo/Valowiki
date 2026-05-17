@@ -1,0 +1,417 @@
+.tejoMain {
+    position: relative;
+    min-height: 100vh;
+    background: #0a0806;
+    color: #fff;
+    overflow: hidden;
+    font-family: var(--font-tech, 'Share Tech Mono', monospace);
+}
+
+.radarBackground {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.radarSweep {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(128, 69, 27, 0.2);
+    border-radius: 50%;
+}
+
+.radarSweep::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(128, 69, 27, 0.8), transparent);
+    transform-origin: left center;
+    animation: radarRotate 3s linear infinite;
+}
+
+@keyframes radarRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.missileTrail {
+    position: absolute;
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(180deg, rgba(128, 69, 27, 0.6), transparent);
+    animation: missileFall 5s linear infinite;
+}
+
+@keyframes missileFall {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.6;
+    }
+
+    80% {
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+.tacOverlay {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(128, 69, 27, 0.02) 3px, rgba(128, 69, 27, 0.02) 4px);
+    z-index: 1;
+}
+
+/* SIGNATURE: Radar ping — expanding circles from radar center */
+.radarPing {
+    position: absolute;
+    border: 1px solid rgba(200, 122, 58, 0.3);
+    border-radius: 50%;
+    animation: pingExpand 3s ease-out infinite;
+}
+
+@keyframes pingExpand {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.8;
+    }
+
+    100% {
+        width: 400px;
+        height: 400px;
+        margin-left: -200px;
+        margin-top: -200px;
+        opacity: 0;
+    }
+}
+
+/* SIGNATURE: Artillery trajectory arcs — curved dotted paths  */
+.artilleryArc {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    border-top: 2px dashed rgba(200, 122, 58, 0.3);
+    border-radius: 50% 50% 0 0;
+    animation: arcFire 4s ease-in-out infinite;
+}
+
+@keyframes arcFire {
+    0% {
+        transform: scaleX(0);
+        opacity: 0;
+        transform-origin: left;
+    }
+
+    40% {
+        transform: scaleX(1);
+        opacity: 0.6;
+    }
+
+    70% {
+        opacity: 0.2;
+    }
+
+    100% {
+        transform: scaleX(0);
+        opacity: 0;
+        transform-origin: right;
+    }
+}
+
+/* SIGNATURE: Targeting crosshair grid — faint grid overlay */
+.crosshairGrid {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(rgba(200, 122, 58, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200, 122, 58, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridPulse 4s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+}
+
+.tacHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(128, 69, 27, 0.4);
+}
+
+.tacLink {
+    color: #80451b;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.tacLink:hover {
+    color: #c87a3a;
+    text-shadow: 0 0 20px rgba(128, 69, 27, 0.5);
+}
+
+.strikeGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 4rem;
+}
+
+.imageCol {
+    display: flex;
+    justify-content: center;
+}
+
+.targetBox {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, #1a0f06, #2a1a0a);
+    border: 2px solid rgba(128, 69, 27, 0.4);
+    clip-path: polygon(0 0, 95% 0, 100% 5%, 100% 100%, 5% 100%, 0 95%);
+    overflow: hidden;
+    animation: tacPulse 4s ease-in-out infinite;
+}
+
+@keyframes tacPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(128, 69, 27, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 50px rgba(128, 69, 27, 0.4);
+    }
+}
+
+.tejoPortrait {
+    width: 110%;
+    height: 110%;
+    object-fit: cover;
+    object-position: center top;
+    margin-left: -5%;
+    margin-top: -3%;
+    filter: contrast(1.15) saturate(1.1);
+    transition: transform 0.5s ease;
+}
+
+.targetBox:hover .tejoPortrait {
+    transform: scale(1.06);
+}
+
+.loreCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tacPanel {
+    padding: 2rem;
+    background: rgba(128, 69, 27, 0.04);
+    border-left: 3px solid #80451b;
+}
+
+.tejoName {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 800;
+    color: #c87a3a;
+    letter-spacing: 4px;
+    line-height: 0.9;
+    margin: 0 0 0.5rem 0;
+}
+
+.tacSubtitle {
+    font-size: 0.9rem;
+    color: #80451b;
+    letter-spacing: 6px;
+    margin: 0 0 1.5rem 0;
+    font-weight: 700;
+}
+
+.tejoLore {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #aa9080;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.roleBox {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.2rem;
+    background: rgba(128, 69, 27, 0.08);
+    border: 1px solid rgba(128, 69, 27, 0.3);
+    width: fit-content;
+    margin-bottom: 1.5rem;
+}
+
+.roleIconTac {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(0.5) sepia(1) hue-rotate(10deg) saturate(3);
+}
+
+.roleBox span {
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    color: #c87a3a;
+    font-weight: 700;
+}
+
+.tacPlayer {
+    margin-top: 1rem;
+}
+
+.salvoHeader {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.salvoTitle {
+    font-size: 1.6rem;
+    color: #c87a3a;
+    letter-spacing: 8px;
+    margin: 0 0 0.5rem 0;
+}
+
+.khakiLine {
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, #80451b, #3a2a1a);
+    margin: 0 auto;
+}
+
+.salvoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.salvoModule {
+    position: relative;
+    padding: 1.5rem;
+    background: rgba(128, 69, 27, 0.04);
+    border: 1px solid rgba(128, 69, 27, 0.15);
+    clip-path: polygon(0 0, 100% 0, 100% 92%, 95% 100%, 0 100%);
+    transition: all 0.3s ease;
+}
+
+.salvoModule:hover {
+    border-color: #80451b;
+    background: rgba(128, 69, 27, 0.08);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(128, 69, 27, 0.15);
+}
+
+.salvoIconBox {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    background: rgba(128, 69, 27, 0.1);
+    border: 2px solid rgba(128, 69, 27, 0.3);
+}
+
+.salvoIcon {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) invert(1);
+}
+
+.salvoData {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.salvoAbilityName {
+    font-size: 0.95rem;
+    color: #c87a3a;
+    letter-spacing: 3px;
+    margin: 0;
+}
+
+.salvoType {
+    font-size: 0.7rem;
+    color: #80451b;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.salvoText {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: #888;
+    margin: 0;
+    font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.strikeBorder {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #80451b, transparent);
+}
+
+@media (max-width: 768px) {
+    .strikeGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .content {
+        padding: 1rem 1.5rem;
+    }
+}

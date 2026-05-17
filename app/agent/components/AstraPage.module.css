@@ -1,0 +1,320 @@
+.astraMain {
+    min-height: 100vh;
+    background-color: #0d0614;
+    color: #e5ccff;
+    font-family: var(--font-outfit), sans-serif;
+    position: relative;
+    overflow-x: hidden;
+    padding: 2rem;
+}
+
+/* Cosmic Background Animations */
+.cosmicNebula {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200vw;
+    height: 200vh;
+    background: radial-gradient(circle at center, rgba(88, 30, 166, 0.15) 0%, rgba(13, 6, 20, 0) 60%),
+        radial-gradient(circle at 80% 20%, rgba(204, 153, 255, 0.1) 0%, rgba(13, 6, 20, 0) 40%),
+        radial-gradient(circle at 20% 80%, rgba(242, 219, 102, 0.05) 0%, rgba(13, 6, 20, 0) 30%);
+    animation: slowSpin 60s linear infinite;
+    z-index: 0;
+    pointer-events: none;
+}
+
+@keyframes slowSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.starfield {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(242, 219, 102, 0.5) 100%, transparent),
+        radial-gradient(2px 2px at 40% 60%, rgba(204, 153, 255, 0.6) 100%, transparent),
+        radial-gradient(1px 1px at 80% 80%, white 100%, transparent),
+        radial-gradient(2px 2px at 90% 10%, rgba(242, 219, 102, 0.3) 100%, transparent),
+        radial-gradient(1px 1px at 30% 90%, rgba(204, 153, 255, 0.7) 100%, transparent);
+    background-size: 200px 200px;
+    animation: floatStars 20s infinite linear;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes floatStars {
+    0% {
+        opacity: 0.5;
+        background-position: 0 0;
+    }
+
+    50% {
+        opacity: 1;
+        background-position: 50px -50px;
+    }
+
+    100% {
+        opacity: 0.5;
+        background-position: 100px -100px;
+    }
+}
+
+.content {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.headerRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(204, 153, 255, 0.2);
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+
+.backLink {
+    color: #f2db66;
+    text-decoration: none;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    transition: text-shadow 0.3s ease;
+}
+
+.backLink:hover {
+    text-shadow: 0 0 10px #f2db66;
+}
+
+.astralContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-bottom: 5rem;
+}
+
+@media (min-width: 1024px) {
+    .astralContainer {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.etherealPortrait {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: zeroGravity 6s ease-in-out infinite;
+}
+
+@keyframes zeroGravity {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(1deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+.galaxyAura {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(142, 68, 204, 0.4) 0%, transparent 70%);
+    filter: blur(20px);
+    z-index: 0;
+    animation: pulseAura 4s infinite alternate;
+}
+
+@keyframes pulseAura {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+.portraitImg {
+    width: 120%;
+    max-width: 700px;
+    z-index: 1;
+    position: relative;
+    filter: drop-shadow(0 0 30px rgba(142, 68, 204, 0.5));
+}
+
+.lorePanel {
+    flex: 1;
+    padding: 2rem;
+    background: rgba(43, 20, 77, 0.3);
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(204, 153, 255, 0.2);
+    box-shadow: 0 10px 40px rgba(13, 6, 20, 0.8);
+}
+
+.cosmicName {
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 200;
+    letter-spacing: 8px;
+    color: #fff;
+    margin: 0;
+    text-shadow: 0 0 20px rgba(204, 153, 255, 0.6);
+}
+
+.goldLine {
+    width: 100px;
+    height: 4px;
+    background: #f2db66;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+    box-shadow: 0 0 10px #f2db66;
+}
+
+.etherealText {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #e5ccff;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.originPill {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(242, 219, 102, 0.1);
+    border: 1px solid #f2db66;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    margin-top: 2rem;
+    color: #f2db66;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+.roleIcon {
+    width: 20px;
+    height: 20px;
+    filter: invert(85%) sepia(48%) saturate(1005%) hue-rotate(338deg) brightness(101%) contrast(92%);
+    /* Approximates the gold tint */
+}
+
+.audioWrapper button {
+    background: transparent !important;
+    border: 1px solid #f2db66 !important;
+    color: #f2db66 !important;
+    border-radius: 30px !important;
+}
+
+.sectionTitle {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: 4px;
+    text-align: center;
+    margin-bottom: 4rem;
+    text-shadow: 0 0 15px rgba(204, 153, 255, 0.5);
+}
+
+/* Floating Constellation Grid */
+.cosmosGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 4rem;
+}
+
+.floatingStarContent {
+    position: relative;
+    background: rgba(13, 6, 20, 0.6);
+    border-radius: 20px;
+    padding: 3rem 2rem 2rem 2rem;
+    border: 1px solid rgba(142, 68, 204, 0.3);
+    text-align: center;
+    animation: zeroGravity 5s ease-in-out infinite;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.floatingStarContent:hover {
+    border-color: #f2db66;
+}
+
+.starCore {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background: #2b144d;
+    border-radius: 50%;
+    border: 2px solid #f2db66;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    box-shadow: 0 0 20px rgba(242, 219, 102, 0.4);
+}
+
+.starIcon {
+    width: 30px;
+    height: 30px;
+    filter: invert(1);
+}
+
+.starAura {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(204, 153, 255, 0.4) 0%, transparent 70%);
+    z-index: 1;
+}
+
+.abilityInfo h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #fff;
+    margin: 1rem 0 0.5rem 0;
+}
+
+.goldenSlot {
+    display: block;
+    color: #f2db66;
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+}
+
+.abilityInfo p {
+    color: #b399cc;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}

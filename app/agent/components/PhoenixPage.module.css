@@ -1,0 +1,353 @@
+.phxMain {
+    min-height: 100vh;
+    background-color: #111111;
+    /* Charcoal canvas */
+    color: #fff;
+    font-family: var(--font-heading), sans-serif;
+    position: relative;
+    overflow-x: hidden;
+    padding: 2rem;
+}
+
+/* ------------------------------------- */
+/* EMBER ANIMATION BACKGROUND            */
+/* ------------------------------------- */
+.fireBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at center, #1b110b 0%, #111111 80%);
+}
+
+.ember {
+    position: absolute;
+    background: #ffaa00;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #f05b32, 0 0 20px #ffaa00;
+    animation: floatUp 5s infinite ease-in;
+    bottom: -20px;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1) translateX(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-400px) scale(0.8) translateX(20px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-1000px) scale(0.5) translateX(-20px);
+        opacity: 0;
+    }
+}
+
+.smokeOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(17, 17, 17, 0.9) 0%, rgba(17, 17, 17, 0.2) 60%, rgba(17, 17, 17, 0.9) 100%);
+    z-index: 1;
+}
+
+/* ------------------------------------- */
+/* CONTENT LAYOUT                        */
+/* ------------------------------------- */
+.content {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.phxHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 3px solid #f05b32;
+    align-items: center;
+}
+
+.fireLink {
+    color: #ffaa00;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
+}
+
+.fireLink:hover {
+    color: #fff;
+    text-shadow: 0 0 15px #f05b32, 0 0 30px #f05b32;
+    letter-spacing: 4px;
+}
+
+/* ------------------------------------- */
+/* SWAGGER GRID                          */
+/* ------------------------------------- */
+.swaggerGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    margin-bottom: 6rem;
+}
+
+@media (min-width: 1024px) {
+    .swaggerGrid {
+        grid-template-columns: 500px 1fr;
+        align-items: center;
+    }
+}
+
+.blazeBox {
+    width: 100%;
+    height: 700px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.phxPortrait {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 110%;
+    object-fit: contain;
+    object-position: bottom center;
+    z-index: 10;
+    filter: drop-shadow(0px -10px 40px rgba(240, 91, 50, 0.5));
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.blazeBox:hover .phxPortrait {
+    filter: drop-shadow(0px -10px 60px rgba(255, 170, 0, 0.8));
+    transform: scale(1.05) translateY(-20px);
+}
+
+/* ------------------------------------- */
+/* COCKY PANEL                           */
+/* ------------------------------------- */
+.cockyPanel {
+    flex: 1;
+    padding: 4rem;
+    background: rgba(24, 24, 24, 0.8);
+    backdrop-filter: blur(10px);
+    border-left: 8px solid #f05b32;
+    position: relative;
+    box-shadow: 20px 20px 0 rgba(240, 91, 50, 0.2);
+}
+
+.phxName {
+    font-size: clamp(4rem, 8vw, 8rem);
+    color: #fff;
+    margin: 0;
+    font-weight: 900;
+    text-shadow: 4px 4px 0px #f05b32;
+    letter-spacing: 4px;
+}
+
+.fireSubtitle {
+    font-size: 1.8rem;
+    color: #ffaa00;
+    margin-top: 10px;
+    margin-bottom: 3rem;
+    letter-spacing: 2px;
+}
+
+.phxLore {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #e2e8f0;
+    margin-bottom: 3rem;
+    position: relative;
+    font-family: sans-serif;
+}
+
+.roleBox {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: #f05b32;
+    color: #fff;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    box-shadow: 5px 5px 0 #ffaa00;
+}
+
+.roleIconFlame {
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(0 0 5px #ffaa00);
+}
+
+.firePlayer button {
+    background: #181818 !important;
+    color: #ffaa00 !important;
+    border: 2px solid #f05b32 !important;
+    font-weight: 900 !important;
+    letter-spacing: 2px !important;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.firePlayer button:hover {
+    background: #f05b32 !important;
+    color: #fff !important;
+    box-shadow: 0 0 20px #f05b32 !important;
+    transform: scale(1.05) !important;
+}
+
+/* ------------------------------------- */
+/* BLAZING ABILITIES                     */
+/* ------------------------------------- */
+.abilitiesHeader {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.flameTitle {
+    font-size: 3rem;
+    color: #fff;
+    margin: 0;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.orangeLine {
+    flex: 1;
+    height: 4px;
+    background: linear-gradient(90deg, #f05b32, #ffaa00, transparent);
+}
+
+.blazingGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 4rem;
+    margin-bottom: 6rem;
+}
+
+/* Flare Hover Block Styling */
+.flameModule {
+    background: rgba(40, 20, 15, 0.4);
+    border: 2px solid rgba(240, 91, 50, 0.2);
+    padding: 3rem;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+}
+
+.igniteBorder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 80px rgba(240, 91, 50, 0.8);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.flameModule:hover {
+    border-color: #ffaa00;
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(240, 91, 50, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 170, 0, 0.3);
+}
+
+.flameModule:hover .igniteBorder {
+    opacity: 1;
+}
+
+.emberIconBox {
+    width: 80px;
+    height: 80px;
+    background: rgba(240, 91, 50, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    border: 2px solid rgba(240, 91, 50, 0.5);
+}
+
+.flameModule:hover .emberIconBox {
+    background: #f05b32;
+    box-shadow: 0 0 30px #f05b32;
+    transform: rotate(15deg) scale(1.1);
+    border-color: #ffaa00;
+}
+
+.flameIcon {
+    width: 45px;
+    height: 45px;
+    filter: drop-shadow(0 0 5px #ffaa00);
+    transition: all 0.3s ease;
+}
+
+.flameModule:hover .flameIcon {
+    filter: brightness(0) invert(1);
+}
+
+.flameData {
+    position: relative;
+    z-index: 2;
+}
+
+.flameAbilityName {
+    font-size: 2.2rem;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    font-weight: 900;
+    text-shadow: 2px 2px 0 #f05b32;
+}
+
+.flameModule:hover .flameAbilityName {
+    color: #ffaa00;
+}
+
+.flameType {
+    display: inline-block;
+    color: #f05b32;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+.flameModule:hover .flameType {
+    color: #fff;
+}
+
+.flameText {
+    color: #d1d5db;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    font-family: sans-serif;
+}
+
+.flameModule:hover .flameText {
+    color: #fff;
+}

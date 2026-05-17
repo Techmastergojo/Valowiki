@@ -1,0 +1,453 @@
+.terminalMain {
+    min-height: 100vh;
+    background-color: #0b0c10;
+    /* Deep Obsidian Terminal Engine */
+    color: #fff;
+    font-family: var(--font-tech), monospace;
+    position: relative;
+    overflow-x: hidden;
+    padding: 2rem;
+}
+
+/* ------------------------------------- */
+/* SYSTEM CLI OVERLAYS                   */
+/* ------------------------------------- */
+.systemBackgroundContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.2));
+    background-size: 100% 4px;
+    z-index: 2;
+}
+
+.binaryWall {
+    position: absolute;
+    top: -50%;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    color: rgba(177, 117, 255, 0.05);
+    /* Very faint Synthetic Violet */
+    font-size: 1.5rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+    z-index: 1;
+    animation: binaryScroll 60s infinite linear;
+}
+
+@keyframes binaryScroll {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-20%);
+    }
+}
+
+.vignetteOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 30%, #0b0c10 90%);
+    z-index: 3;
+}
+
+
+/* ------------------------------------- */
+/* CONTENT LAYOUT                        */
+/* ------------------------------------- */
+.sysContent {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.sysHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px dashed rgba(177, 117, 255, 0.4);
+    align-items: center;
+}
+
+.sysLink {
+    color: #ff4655;
+    /* Danger Red */
+    text-decoration: none;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.1s steps(2);
+    /* Choppy glitch transition */
+}
+
+.sysLink:hover {
+    background: rgba(255, 70, 85, 0.2);
+    color: #fff;
+    text-shadow: -2px 0 #b175ff, 2px 0 #ff4655;
+}
+
+/* ------------------------------------- */
+/* SYS GRID                              */
+/* ------------------------------------- */
+.sysGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    margin-bottom: 6rem;
+}
+
+@media (min-width: 1024px) {
+    .sysGrid {
+        grid-template-columns: 500px 1fr;
+        align-items: center;
+    }
+}
+
+.sysPortraitBox {
+    width: 100%;
+    height: 700px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.targetLockFrame {
+    position: absolute;
+    top: 10%;
+    bottom: 0;
+    left: 5%;
+    right: 5%;
+    border: 1px solid rgba(177, 117, 255, 0.2);
+    z-index: 5;
+    transition: all 0.3s ease;
+    background: rgba(177, 117, 255, 0.02);
+}
+
+.bracketTopLeft,
+.bracketBottomRight {
+    position: absolute;
+    color: #b175ff;
+    font-size: 5rem;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.bracketTopLeft {
+    top: -20px;
+    left: -10px;
+}
+
+.bracketBottomRight {
+    bottom: -20px;
+    right: -10px;
+}
+
+.sysPortrait {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 110%;
+    object-fit: contain;
+    object-position: bottom center;
+    z-index: 10;
+    filter: drop-shadow(0px -10px 20px rgba(177, 117, 255, 0.4));
+    transition: filter 0.1s steps(3);
+    /* Choppy robot filter shift */
+}
+
+.sysPortraitBox:hover .targetLockFrame {
+    border-color: rgba(255, 70, 85, 0.6);
+    /* Shift to Red lock-on */
+    background: rgba(255, 70, 85, 0.05);
+}
+
+.sysPortraitBox:hover .bracketTopLeft,
+.sysPortraitBox:hover .bracketBottomRight {
+    color: #ff4655;
+    animation: glitchFlicker 0.2s infinite;
+}
+
+.sysPortraitBox:hover .sysPortrait {
+    filter: drop-shadow(5px 0px 30px rgba(255, 70, 85, 0.6)) hue-rotate(-20deg);
+}
+
+/* ------------------------------------- */
+/* SYS PANEL                             */
+/* ------------------------------------- */
+.sysPanel {
+    flex: 1;
+    padding: 4rem;
+    background: #111;
+    border-left: 10px solid #b175ff;
+    position: relative;
+}
+
+.sysName {
+    font-size: clamp(4rem, 7vw, 7rem);
+    color: #fff;
+    margin: 0;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+.sysSubtitle {
+    font-size: 1.5rem;
+    color: #b175ff;
+    margin-top: 10px;
+    margin-bottom: 3rem;
+    font-weight: 700;
+    letter-spacing: 6px;
+}
+
+.sysLore {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #00ff41;
+    /* CRT Terminal Green */
+    font-family: monospace;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 2;
+}
+
+.sysRoleBox {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba(177, 117, 255, 0.1);
+    color: #b175ff;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 4px;
+    border: 1px solid rgba(177, 117, 255, 0.4);
+    margin-bottom: 2rem;
+}
+
+.sysRoleIcon {
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(0 0 5px #b175ff);
+}
+
+.sysPlayer button {
+    background: transparent !important;
+    color: #ff4655 !important;
+    border: 1px solid #ff4655 !important;
+    font-family: var(--font-tech), monospace !important;
+    letter-spacing: 4px !important;
+    border-radius: 0 !important;
+    transition: all 0.1s steps(2) !important;
+}
+
+.sysPlayer button:hover {
+    background: #ff4655 !important;
+    color: #000 !important;
+    box-shadow: 0 0 30px rgba(255, 70, 85, 0.8) !important;
+    animation: glitchFlicker 0.2s infinite;
+}
+
+/* ------------------------------------- */
+/* CLI ABILITIES                         */
+/* ------------------------------------- */
+.cmdHeader {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.cmdTitle {
+    font-size: 2.5rem;
+    color: #b175ff;
+    margin: 0;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.sysLine {
+    flex: 1;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, #b175ff, #b175ff 10px, transparent 10px, transparent 20px);
+}
+
+.sysConstructGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+}
+
+/* Base CLI Module Styling */
+.sysModule {
+    background: #111;
+    border: 1px solid #333;
+    padding: 3rem;
+    position: relative;
+    transition: all 0.1s steps(2);
+    overflow: hidden;
+}
+
+.glitchBlock {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #b175ff;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* HOVER OVERRIDE GLITCH */
+.sysModule:hover {
+    border-color: #ff4655;
+    box-shadow: -5px 5px 0 #b175ff;
+    transform: translate(5px, -5px);
+    animation: jitterBox 0.3s infinite;
+}
+
+.sysModule:hover .glitchBlock {
+    animation: glitchFlash 0.2s infinite steps(2);
+}
+
+@keyframes glitchFlash {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.15;
+        background: #ff4655;
+    }
+
+    100% {
+        opacity: 0;
+        background: #b175ff;
+    }
+}
+
+@keyframes jitterBox {
+    0% {
+        transform: translate(5px, -5px);
+    }
+
+    50% {
+        transform: translate(4px, -6px);
+    }
+
+    100% {
+        transform: translate(6px, -4px);
+    }
+}
+
+@keyframes glitchFlicker {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    20% {
+        opacity: 0.8;
+        transform: translateX(-2px);
+    }
+
+    40% {
+        opacity: 1;
+        transform: translateX(2px);
+    }
+
+    60% {
+        opacity: 0.5;
+        transform: translateX(-1px);
+    }
+
+    80% {
+        opacity: 1;
+        transform: translateX(1px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.sysIconBox {
+    width: 70px;
+    height: 70px;
+    background: transparent;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.sysIcon {
+    width: 50px;
+    height: 50px;
+    transition: filter 0.1s steps(2);
+}
+
+.sysModule:hover .sysIcon {
+    filter: drop-shadow(0 0 15px #ff4655);
+}
+
+.sysData {
+    position: relative;
+    z-index: 2;
+}
+
+.sysAbilityName {
+    font-size: 2rem;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.sysType {
+    display: inline-block;
+    color: #b175ff;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.sysText {
+    color: #00ff41;
+    /* Matrix green lore inside abilities */
+    line-height: 1.6;
+    font-size: 1.1rem;
+    font-family: monospace;
+}
+
+.sysModule:hover .sysText {
+    color: #fff;
+}

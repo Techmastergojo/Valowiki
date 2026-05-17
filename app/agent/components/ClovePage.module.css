@@ -1,0 +1,464 @@
+.cloveMain {
+    min-height: 100vh;
+    background-color: #111111;
+    /* Grunge black */
+    color: #fff;
+    font-family: var(--font-heading), sans-serif;
+    position: relative;
+    overflow-x: hidden;
+    padding: 2rem;
+}
+
+/* ------------------------------------- */
+/* GRUNGE & BUTTERFLY BACKGROUND         */
+/* ------------------------------------- */
+.grungeBase {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(255, 46, 147, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(58, 12, 163, 0.2) 0%, transparent 40%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Create a massive halftone / dot pattern overlay indicating grunge print */
+.grungeBase::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 8px 8px;
+    pointer-events: none;
+}
+
+/* ------------------------------------- */
+/* CONTENT LAYOUT                        */
+/* ------------------------------------- */
+.content {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.headerRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 4px dashed #ff2e93;
+    align-items: center;
+}
+
+.punkLink {
+    color: #00f5d4;
+    text-decoration: none;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    background: #3a0ca3;
+    padding: 0.5rem 1rem;
+    transform: rotate(-2deg);
+    transition: all 0.2s ease;
+    display: inline-block;
+    box-shadow: 4px 4px 0 #ff2e93;
+}
+
+.punkLink:hover {
+    transform: rotate(2deg) scale(1.1);
+    background: #ff2e93;
+    box-shadow: -4px 4px 0 #00f5d4;
+    color: #fff;
+}
+
+/* ------------------------------------- */
+/* PUNK GRID (BULLETPROOF MATRIX)        */
+/* ------------------------------------- */
+.punkGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-bottom: 5rem;
+}
+
+@media (min-width: 1024px) {
+    .punkGrid {
+        grid-template-columns: 500px 1fr;
+        align-items: start;
+    }
+}
+
+.colLeft {
+    width: 100%;
+    position: relative;
+}
+
+.portraitContainer {
+    width: 100%;
+    height: 650px;
+    /* Rigid anchor */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.glitchBackdrop {
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
+    left: 10%;
+    right: 10%;
+    background: #ff2e93;
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+    z-index: 1;
+    animation: bgGlitch 4s infinite alternate;
+}
+
+@keyframes bgGlitch {
+    0% {
+        transform: translate(0, 0);
+        clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+        background: #ff2e93;
+    }
+
+    25% {
+        transform: translate(-5px, 5px);
+        background: #3a0ca3;
+    }
+
+    50% {
+        transform: translate(5px, -5px);
+        background: #00f5d4;
+    }
+
+    75% {
+        transform: translate(-2px, 2px);
+        clip-path: polygon(0% 10%, 90% 0%, 100% 90%, 10% 100%);
+    }
+
+    100% {
+        transform: translate(0, 0);
+        background: #ff2e93;
+    }
+}
+
+.clovePortrait {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 110%;
+    /* Break the box vertically slightly */
+    object-fit: contain;
+    object-position: bottom center;
+    z-index: 10;
+    filter: drop-shadow(10px 10px 0px rgba(58, 12, 163, 0.8));
+    transition: all 0.3s ease;
+}
+
+.portraitContainer:hover .clovePortrait {
+    filter: drop-shadow(-10px 5px 0px #ff2e93) drop-shadow(10px -5px 0px #00f5d4);
+    /* Glitchy jump */
+    animation: glitchJump 0.2s 3;
+}
+
+@keyframes glitchJump {
+    0% {
+        transform: translate(0) scale(1);
+    }
+
+    33% {
+        transform: translate(-10px, 5px) scale(1.02);
+    }
+
+    66% {
+        transform: translate(10px, -5px) scale(0.98);
+    }
+
+    100% {
+        transform: translate(0) scale(1);
+    }
+}
+
+/* Punk Stickers slappe over portrait */
+.stickerOne,
+.stickerTwo {
+    position: absolute;
+    background: #fff;
+    color: #111;
+    padding: 5px 15px;
+    font-size: 2rem;
+    z-index: 20;
+    box-shadow: 3px 3px 0 #111;
+    pointer-events: none;
+}
+
+.stickerOne {
+    top: 20%;
+    left: -20px;
+    transform: rotate(-15deg);
+    background: #00f5d4;
+}
+
+.stickerTwo {
+    bottom: 10%;
+    right: -30px;
+    transform: rotate(10deg);
+    background: #ff2e93;
+    color: #fff;
+}
+
+/* ------------------------------------- */
+/* DOSSIER STICKER BLOCK                 */
+/* ------------------------------------- */
+.colRight {
+    position: relative;
+}
+
+.dossierSticker {
+    background: #eee;
+    /* Paper white acting as a massive sticker */
+    color: #111;
+    padding: 3rem;
+    position: relative;
+    transform: rotate(1deg);
+    box-shadow: 15px 15px 0 #3a0ca3;
+}
+
+.tapeTop {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: 150px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.glitchName {
+    font-size: clamp(4rem, 8vw, 8rem);
+    margin: 0;
+    color: #111;
+    letter-spacing: -2px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Glitch Title Text Effect */
+.glitchName::before,
+.glitchName::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.glitchName::before {
+    left: 4px;
+    text-shadow: -2px 0 red;
+    clip: rect(24px, 550px, 90px, 0);
+    animation: noise-anim 2s infinite linear alternate-reverse;
+}
+
+.glitchName::after {
+    left: -4px;
+    text-shadow: -2px 0 blue;
+    clip: rect(85px, 550px, 140px, 0);
+    animation: noise-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes noise-anim {
+    0% {
+        clip: rect(10px, 9999px, 86px, 0);
+    }
+
+    5% {
+        clip: rect(44px, 9999px, 8px, 0);
+    }
+
+    10% {
+        clip: rect(18px, 9999px, 26px, 0);
+    }
+
+    100% {
+        clip: rect(10px, 9999px, 76px, 0);
+    }
+}
+
+@keyframes noise-anim-2 {
+    0% {
+        clip: rect(65px, 9999px, 100px, 0);
+    }
+
+    5% {
+        clip: rect(10px, 9999px, 10px, 0);
+    }
+
+    10% {
+        clip: rect(80px, 9999px, 30px, 0);
+    }
+
+    100% {
+        clip: rect(40px, 9999px, 90px, 0);
+    }
+}
+
+.punkText {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: #333;
+    margin: 2rem 0;
+    font-family: var(--font-body), sans-serif;
+    font-weight: 600;
+}
+
+.roleSticker {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: #111;
+    color: #ff2e93;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    transform: rotate(-2deg);
+    margin-bottom: 2rem;
+}
+
+.roleIconVibrant {
+    width: 30px;
+    height: 30px;
+    filter: invert(34%) sepia(85%) saturate(2371%) hue-rotate(309deg) brightness(101%) contrast(106%);
+}
+
+.audioWrapper button {
+    background: #00f5d4 !important;
+    color: #111 !important;
+    border: 4px solid #111 !important;
+    box-shadow: 5px 5px 0 #111 !important;
+    border-radius: 0 !important;
+    transform: rotate(1deg);
+}
+
+/* ------------------------------------- */
+/* STICKER BOMB ARSENAL                  */
+/* ------------------------------------- */
+.stickerArsenalHeader {
+    margin-bottom: 4rem;
+}
+
+.arsenalSlap {
+    font-size: 3rem;
+    color: #fff;
+    background: #3a0ca3;
+    display: inline-block;
+    padding: 10px 20px;
+    transform: rotate(-3deg);
+    box-shadow: 10px 10px 0 #ff2e93;
+}
+
+.stickerGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 4rem;
+    /* Wide gap because stickers are highly rotated and overlap */
+}
+
+/* Each ability block is a separate sticker element */
+.abilitySticker {
+    background: #fff;
+    color: #111;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.8);
+    border: 3px solid #111;
+    transition: all 0.2s ease;
+}
+
+.abilitySticker:nth-child(even) {
+    background: #ff2e93;
+    color: #fff;
+}
+
+.abilitySticker:nth-child(even) .slotTag {
+    color: #111;
+    background: #00f5d4;
+}
+
+.abilitySticker:nth-child(odd) .slotTag {
+    color: #fff;
+    background: #3a0ca3;
+}
+
+.tapeAngle {
+    position: absolute;
+    top: -10px;
+    right: -20px;
+    width: 80px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    transform: rotate(45deg);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.abilityHeader {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.iconSlapBox {
+    background: #111;
+    padding: 15px;
+    border-radius: 50%;
+}
+
+.stickerIcon {
+    width: 40px;
+    height: 40px;
+}
+
+.stickerTitles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.punkAbilityName {
+    font-size: 1.8rem;
+    margin: 0;
+    letter-spacing: -1px;
+}
+
+.slotTag {
+    padding: 2px 8px;
+    font-size: 0.9rem;
+    display: inline-block;
+    align-self: flex-start;
+    font-family: monospace;
+}
+
+.stickerDesc {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-family: var(--font-body), sans-serif;
+    font-weight: 600;
+}
+
+.abilitySticker:hover {
+    transform: scale(1.1) rotate(0deg) !important;
+    z-index: 100;
+    box-shadow: 15px 15px 0 #3a0ca3;
+}

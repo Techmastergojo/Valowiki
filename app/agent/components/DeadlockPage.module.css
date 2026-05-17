@@ -1,0 +1,446 @@
+.deadlockMain {
+    min-height: 100vh;
+    background-color: #0c1014;
+    /* Deep cold tactical winter gray */
+    color: #dbdbdb;
+    font-family: var(--font-tech), monospace;
+    position: relative;
+    overflow-x: hidden;
+    padding: 2rem;
+}
+
+/* ------------------------------------- */
+/* NANO-WIRE NET BACKGROUND              */
+/* ------------------------------------- */
+.nanoNetBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.nanoNetBackground::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(156, 226, 251, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(156, 226, 251, 0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+}
+
+/* Glowing nano wires passing through the screen randomly */
+.verticalWire1,
+.verticalWire2,
+.horizontalWire1 {
+    position: absolute;
+    background: #9ce2fb;
+    box-shadow: 0 0 10px #9ce2fb, 0 0 20px #9ce2fb;
+    opacity: 0.2;
+}
+
+.verticalWire1 {
+    top: 0;
+    left: 20%;
+    width: 1px;
+    height: 100%;
+}
+
+.verticalWire2 {
+    top: 0;
+    right: 30%;
+    width: 1px;
+    height: 100%;
+}
+
+.horizontalWire1 {
+    top: 40%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+}
+
+/* ------------------------------------- */
+/* CONTENT LAYOUT                        */
+/* ------------------------------------- */
+.content {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.clinicalHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(156, 226, 251, 0.3);
+    align-items: center;
+}
+
+.abortBtn {
+    color: #9ce2fb;
+    text-decoration: none;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    background: rgba(156, 226, 251, 0.05);
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(156, 226, 251, 0.5);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.abortBtn:hover {
+    background: #9ce2fb;
+    color: #0c1014;
+    box-shadow: 0 0 15px #9ce2fb;
+}
+
+/* ------------------------------------- */
+/* CONTAINMENT GRID (BULLETPROOF MATRIX) */
+/* ------------------------------------- */
+.containmentGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-bottom: 5rem;
+}
+
+@media (min-width: 1024px) {
+    .containmentGrid {
+        grid-template-columns: 500px 1fr;
+        align-items: stretch;
+    }
+}
+
+.gridColLeft {
+    width: 100%;
+}
+
+.containmentCell {
+    width: 100%;
+    height: 650px;
+    /* Rigid anchor */
+    background: rgba(12, 16, 20, 0.8);
+    border: 1px solid #1a242c;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+/* High tech border corners */
+.cornerTLL,
+.cornerTRR,
+.cornerBLL,
+.cornerBRR {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #9ce2fb;
+    z-index: 20;
+}
+
+.cornerTLL {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+}
+
+.cornerTRR {
+    top: 0;
+    right: 0;
+    border-left: none;
+    border-bottom: none;
+}
+
+.cornerBLL {
+    bottom: 0;
+    left: 0;
+    border-right: none;
+    border-top: none;
+}
+
+.cornerBRR {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+}
+
+.containedSubject {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+    z-index: 10;
+    filter: contrast(1.1) brightness(0.9) grayscale(0.1);
+}
+
+.medicalOverlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #9ce2fb;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    z-index: 30;
+    pointer-events: none;
+}
+
+.scanningBar {
+    margin-top: 5px;
+    width: 100px;
+    height: 2px;
+    background: rgba(156, 226, 251, 0.2);
+    position: relative;
+}
+
+.scanningBar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 20px;
+    background: #9ce2fb;
+    animation: scanPing 2s infinite ease-in-out alternate;
+}
+
+@keyframes scanPing {
+    0% {
+        left: 0;
+    }
+
+    100% {
+        left: 80px;
+    }
+}
+
+/* ------------------------------------- */
+/* TACTICAL DATA TERMINAL                */
+/* ------------------------------------- */
+.gridColRight {
+    display: flex;
+    flex-direction: column;
+}
+
+.dataTerminal {
+    flex: 1;
+    padding: 3rem;
+    background: rgba(16, 22, 28, 0.7);
+    border: 1px solid #1a242c;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.subjectName {
+    font-size: clamp(3rem, 6vw, 6rem);
+    color: #fff;
+    margin: 0;
+    letter-spacing: 8px;
+    font-weight: 300;
+}
+
+.subjectDesignation {
+    font-size: 0.9rem;
+    color: #9ce2fb;
+    margin-top: 5px;
+    margin-bottom: 2.5rem;
+    letter-spacing: 4px;
+}
+
+.clinicalData {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #a0aebc;
+    font-family: var(--font-body), sans-serif;
+    margin-bottom: 2.5rem;
+    padding-left: 1rem;
+    border-left: 2px solid rgba(156, 226, 251, 0.3);
+}
+
+.rolePlate {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(156, 226, 251, 0.1);
+    color: #9ce2fb;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    align-self: flex-start;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(156, 226, 251, 0.4);
+}
+
+.roleIconIce {
+    width: 25px;
+    height: 25px;
+}
+
+.commsLock button {
+    background: transparent !important;
+    color: #9ce2fb !important;
+    border: 1px solid #9ce2fb !important;
+    border-radius: 0 !important;
+    font-family: var(--font-tech), monospace !important;
+    letter-spacing: 2px !important;
+}
+
+.commsLock button:hover {
+    background: rgba(156, 226, 251, 0.1) !important;
+    box-shadow: 0 0 10px rgba(156, 226, 251, 0.3) !important;
+}
+
+/* ------------------------------------- */
+/* NANO-WIRE ARSENAL MODULES             */
+/* ------------------------------------- */
+.payloadHeader {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.payloadTitle {
+    font-size: 2rem;
+    color: #9ce2fb;
+    margin: 0;
+    letter-spacing: 4px;
+    font-weight: 300;
+}
+
+.iceLine {
+    flex: 1;
+    height: 1px;
+    background: rgba(156, 226, 251, 0.3);
+    position: relative;
+}
+
+.iceLine::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    background: #9ce2fb;
+}
+
+.arsenalGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.arsenalModule {
+    background: rgba(12, 16, 20, 0.8);
+    border: 1px solid #1a242c;
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.nanoMeshPattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(45deg, rgba(156, 226, 251, 0.05) 25%, transparent 25%, transparent 50%, rgba(156, 226, 251, 0.05) 50%, rgba(156, 226, 251, 0.05) 75%, transparent 75%, transparent);
+    background-size: 10px 10px;
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Glowing Nano Wire border wrap animation on hover */
+.arsenalBorderGlow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 0 0 #9ce2fb;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: 10;
+    pointer-events: none;
+}
+
+.arsenalModule:hover {
+    background: rgba(16, 22, 28, 0.9);
+}
+
+.arsenalModule:hover .nanoMeshPattern {
+    opacity: 1;
+}
+
+.arsenalModule:hover .arsenalBorderGlow {
+    box-shadow: inset 0 0 0 2px #9ce2fb, inset 0 0 20px rgba(156, 226, 251, 0.2);
+}
+
+.moduleIconBox {
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+    border: 1px solid rgba(156, 226, 251, 0.5);
+    padding: 10px;
+}
+
+.moduleIcon {
+    width: 100%;
+    height: 100%;
+    filter: sepia(1) hue-rotate(180deg) saturate(3) brightness(1.2);
+    /* ICE BLUE TINT! */
+}
+
+.moduleData {
+    position: relative;
+    z-index: 2;
+}
+
+.moduleName {
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: 2px;
+    font-weight: 300;
+}
+
+.moduleSlot {
+    display: inline-block;
+    color: #9ce2fb;
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.moduleDesc {
+    color: #a0aebc;
+    line-height: 1.5;
+    font-size: 0.95rem;
+    font-family: var(--font-body), sans-serif;
+}

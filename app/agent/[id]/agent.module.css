@@ -1,0 +1,254 @@
+.container {
+    min-height: 100vh;
+    position: relative;
+    background: var(--valo-mid);
+    overflow-x: hidden;
+    color: var(--valo-dark);
+}
+
+.massiveBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.1;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.topSection {
+    position: relative;
+    z-index: 10;
+    padding: 2rem 5vw 0 5vw;
+}
+
+/* FIX: Ensure high z-index and absolute or relative positioning to sit above the giant name */
+.navigationRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 100;
+}
+
+.backBtn {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--valo-dark);
+    transition: color 0.2s ease;
+}
+
+.backBtn:hover {
+    color: var(--valo-red);
+}
+
+.nameWrapper {
+    position: relative;
+    margin-top: 5vh;
+    z-index: 5;
+}
+
+.giantName {
+    font-size: clamp(6rem, 15vw, 15rem);
+    line-height: 0.8;
+    color: var(--valo-dark);
+    margin: 0;
+    white-space: nowrap;
+    position: relative;
+    z-index: 2;
+    text-transform: uppercase;
+    pointer-events: none;
+}
+
+.giantNameGhost {
+    font-size: clamp(6rem, 15vw, 15rem);
+    line-height: 0.8;
+    color: transparent;
+    -webkit-text-stroke: 4px var(--agent-color);
+    opacity: 0.5;
+    margin: 0;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 1;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.mainLayout {
+    display: flex;
+    flex-direction: column;
+    padding: 0 5vw 10vw 5vw;
+    position: relative;
+    z-index: 10;
+}
+
+@media (min-width: 1024px) {
+    .mainLayout {
+        flex-direction: row;
+        gap: 5vw;
+    }
+}
+
+.portraitCol {
+    flex: 1;
+    position: relative;
+}
+
+.fullPortrait {
+    width: 150%;
+    max-width: 900px;
+    margin-left: -20%;
+    margin-top: -10vw;
+    filter: drop-shadow(-20px 20px 0px var(--agent-color));
+}
+
+.dossierCol {
+    flex: 1.5;
+    padding-top: 2rem;
+}
+
+.roleBox {
+    display: inline-flex;
+    align-items: center;
+    background: var(--agent-color);
+    color: var(--valo-white);
+    padding: 1rem 2rem;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.roleIcon {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1);
+}
+
+.roleBox h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.agentBio {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-bottom: 4rem;
+    padding-left: 1rem;
+    border-left: 6px solid var(--agent-color);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.sectionHeading {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--valo-dark);
+    margin-bottom: 2rem;
+    border-bottom: 4px solid var(--valo-dark);
+    padding-bottom: 0.5rem;
+}
+
+.abilityList {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 5rem;
+}
+
+.abilityBlock {
+    display: flex;
+    background: var(--valo-white);
+    box-shadow: 10px 10px 0 var(--agent-color);
+    padding: 2rem;
+    gap: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.abilityIcon {
+    flex: 0 0 80px;
+    height: 80px;
+    background: var(--valo-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.abilityIcon img {
+    width: 50px;
+    height: 50px;
+    filter: brightness(0) invert(1);
+}
+
+.abilityDetails h4 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--valo-dark);
+}
+
+.slotLabel {
+    color: var(--agent-color);
+    font-family: var(--font-body);
+    font-size: 1rem;
+}
+
+.abilityDetails p {
+    margin: 0;
+    line-height: 1.5;
+    color: #333;
+}
+
+.weaponsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.weaponCard {
+    background: var(--valo-dark);
+    position: relative;
+    padding: 2rem;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.weaponBg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: var(--agent-color);
+    opacity: 0.2;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.weaponCard img {
+    width: 100%;
+    max-width: 250px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    position: relative;
+    z-index: 2;
+}
+
+.weaponCard h4 {
+    font-family: var(--font-heading);
+    color: var(--valo-white);
+    font-size: 1.5rem;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+    border-top: 2px solid var(--agent-color);
+    padding-top: 1rem;
+}

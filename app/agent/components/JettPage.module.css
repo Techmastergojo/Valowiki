@@ -1,0 +1,397 @@
+.jettMain {
+    min-height: 100vh;
+    background-color: #0c192c;
+    /* Tempest Navy Void */
+    background-image: radial-gradient(circle at 50% 0%, rgba(116, 227, 255, 0.15) 0%, transparent 60%);
+    color: #fff;
+    font-family: var(--font-heading), sans-serif;
+    position: relative;
+    overflow-x: hidden;
+    padding: 2rem;
+}
+
+/* ------------------------------------- */
+/* INFINITE WIND STREAKS                 */
+/* ------------------------------------- */
+.windGridContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.windStreakOne,
+.windStreakTwo,
+.windStreakThree {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(116, 227, 255, 0.5), #fff, transparent);
+    filter: blur(2px);
+    transform: translateX(-100%);
+}
+
+.windStreakOne {
+    top: 20%;
+    width: 40%;
+    animation: windSlash 2s infinite cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+.windStreakTwo {
+    top: 60%;
+    width: 60%;
+    animation: windSlash 3s infinite cubic-bezier(0.1, 0.8, 0.3, 1) 1s;
+}
+
+.windStreakThree {
+    top: 85%;
+    width: 30%;
+    animation: windSlash 1.5s infinite cubic-bezier(0.1, 0.8, 0.3, 1) 0.5s;
+}
+
+@keyframes windSlash {
+    0% {
+        transform: translateX(-100vw);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(200vw);
+        opacity: 0;
+    }
+}
+
+
+/* ------------------------------------- */
+/* CONTENT LAYOUT                        */
+/* ------------------------------------- */
+.content {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.agileHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(116, 227, 255, 0.3);
+    align-items: center;
+}
+
+.windLink {
+    color: #74e3ff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    letter-spacing: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-style: italic;
+    transition: all 0.2s cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+.windLink:hover {
+    transform: translateX(-10px) skewX(-10deg);
+    text-shadow: 0 0 15px rgba(116, 227, 255, 0.8);
+    color: #fff;
+}
+
+/* ------------------------------------- */
+/* AGILITY GRID                          */
+/* ------------------------------------- */
+.driftGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    margin-bottom: 6rem;
+}
+
+@media (min-width: 1024px) {
+    .driftGrid {
+        grid-template-columns: 500px 1fr;
+        align-items: center;
+    }
+}
+
+.skyPortraitBox {
+    width: 100%;
+    height: 700px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    animation: zeroGravityDrift 6s infinite ease-in-out alternate;
+}
+
+@keyframes zeroGravityDrift {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-20px);
+    }
+}
+
+.cloudAuraFrame {
+    position: absolute;
+    top: 10%;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    background: radial-gradient(circle at center, rgba(116, 227, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 5;
+    filter: blur(20px);
+    transition: all 0.5s ease;
+}
+
+.jettPortrait {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 110%;
+    object-fit: contain;
+    object-position: bottom center;
+    z-index: 10;
+    filter: drop-shadow(0px -10px 30px rgba(116, 227, 255, 0.4));
+    transition: all 0.3s cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+.skyPortraitBox:hover .cloudAuraFrame {
+    background: radial-gradient(circle at center, rgba(116, 227, 255, 0.4) 0%, transparent 80%);
+}
+
+.skyPortraitBox:hover .jettPortrait {
+    filter: drop-shadow(20px 0px 40px rgba(116, 227, 255, 0.6));
+    transform: translateX(-15px) skewX(-2deg);
+    /* Dodge backward */
+}
+
+/* ------------------------------------- */
+/* DRIFT PANEL                           */
+/* ------------------------------------- */
+.driftPanel {
+    flex: 1;
+    padding: 4rem;
+    background: rgba(12, 25, 44, 0.6);
+    border-left: 4px solid #74e3ff;
+    position: relative;
+    animation: zeroGravityDrift 7s infinite ease-in-out alternate-reverse;
+}
+
+.windName {
+    font-size: clamp(4rem, 7vw, 7rem);
+    color: #fff;
+    margin: 0;
+    letter-spacing: 12px;
+    font-weight: 800;
+    font-style: italic;
+    text-shadow: 4px 0px 0px rgba(116, 227, 255, 0.4);
+}
+
+.agileSubtitle {
+    font-size: 1.5rem;
+    color: #74e3ff;
+    margin-top: 10px;
+    margin-bottom: 3rem;
+    font-weight: 700;
+    letter-spacing: 6px;
+    font-style: italic;
+}
+
+.windLore {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #e2e8f0;
+    font-family: var(--font-body), sans-serif;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 2;
+}
+
+.roleBox {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba(116, 227, 255, 0.1);
+    color: #74e3ff;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 4px;
+    border: 1px solid rgba(116, 227, 255, 0.4);
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.roleIconSky {
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(0 0 5px #74e3ff);
+}
+
+.windPlayer button {
+    background: transparent !important;
+    color: #fff !important;
+    border: 1px solid #74e3ff !important;
+    font-family: var(--font-heading), sans-serif !important;
+    letter-spacing: 4px !important;
+    border-radius: 20px !important;
+    /* Agile pill shape */
+    transition: all 0.2s cubic-bezier(0.1, 0.8, 0.3, 1) !important;
+    font-style: italic !important;
+}
+
+.windPlayer button:hover {
+    background: #74e3ff !important;
+    color: #0c192c !important;
+    box-shadow: 0 0 30px rgba(116, 227, 255, 0.8) !important;
+    transform: translateX(10px) !important;
+}
+
+/* ------------------------------------- */
+/* KUNAI ABILITIES                       */
+/* ------------------------------------- */
+.kunaiHeader {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.kunaiTitle {
+    font-size: 2.5rem;
+    color: #fff;
+    margin: 0;
+    letter-spacing: 8px;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.skyLine {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, #74e3ff, transparent);
+}
+
+.agileConstructGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+}
+
+/* Base Module Styling */
+.windModule {
+    background: rgba(12, 25, 44, 0.8);
+    border: 1px solid rgba(116, 227, 255, 0.2);
+    padding: 3rem;
+    position: relative;
+    transition: all 0.15s cubic-bezier(0.1, 0.8, 0.3, 1);
+    animation: zeroGravityDrift 5s infinite ease-in-out alternate;
+}
+
+/* Stagger animations for floating grid boxes */
+.windModule:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.windModule:nth-child(3) {
+    animation-delay: 1s;
+}
+
+.windModule:nth-child(4) {
+    animation-delay: 1.5s;
+}
+
+.snapDriftHighlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    background: linear-gradient(90deg, rgba(116, 227, 255, 0.1), transparent);
+    transition: all 0.2s ease;
+    z-index: 0;
+}
+
+.windModule:hover {
+    border-color: rgba(116, 227, 255, 1);
+    transform: translateX(-40px) skewX(-5deg) scale(1.05) !important;
+    /* THE TAILWIND SNAP */
+    box-shadow: 20px 0 40px rgba(116, 227, 255, 0.3);
+    z-index: 20;
+}
+
+.windModule:hover .snapDriftHighlight {
+    width: 100%;
+}
+
+.windIconBox {
+    width: 70px;
+    height: 70px;
+    background: transparent;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.windIcon {
+    width: 50px;
+    height: 50px;
+    transition: all 0.2s ease;
+}
+
+.windModule:hover .windIcon {
+    filter: drop-shadow(0 0 15px rgba(116, 227, 255, 1));
+    transform: scale(1.1);
+}
+
+.windData {
+    position: relative;
+    z-index: 2;
+}
+
+.windAbilityName {
+    font-size: 2rem;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    font-weight: 700;
+    letter-spacing: 4px;
+    font-style: italic;
+}
+
+.windType {
+    display: inline-block;
+    color: #74e3ff;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    font-style: italic;
+}
+
+.windText {
+    color: #9ba4b5;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    font-family: var(--font-body), sans-serif;
+}
+
+.windModule:hover .windText {
+    color: #fff;
+}
